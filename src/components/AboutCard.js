@@ -8,6 +8,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import '../App.css';
 
 export class AboutCard extends Component {
   render() {
@@ -21,7 +22,6 @@ export class AboutCard extends Component {
         }}
       >
         <div style={{ width: "70%", marginBottom: "5rem" }}>
-         
         </div>
         <div style={{ width: "70%" }}>
           <Container fluid>
@@ -32,11 +32,11 @@ export class AboutCard extends Component {
                     width: "45rem",
                   }}
                 >
-                  <div style={{background:"#f2f2f2"}}>
+                  <div style={{ background: "#f2f2f2" }}>
                     <Card.Title >
                       <button
                         variant="primary"
-                        style={{ border: "none", background: "none",float:"right" }}
+                        style={{ border: "none", background: "none", float: "right" }}
                       >
                         favorite💙
                       </button>

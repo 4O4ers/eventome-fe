@@ -4,3 +4,6 @@
 .first {
     background-color: red;
 }
+Col {
+    border: red solid;
+}
