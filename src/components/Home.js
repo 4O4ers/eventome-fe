@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Button,Form,FormControl } from 'react-bootstrap'
+import { Button, Form, FormControl } from 'react-bootstrap'
+import AboutCard from './AboutCard'
+import data from '../data.json';
+import { withAuth0 } from '@auth0/auth0-react'
+
 class Home extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             events: [],
+            eventData: data,
         }
     }
 
@@ -23,12 +28,15 @@ class Home extends Component {
                     />
                     <Button variant="outline-success">Search</Button>
                 </Form>
+                <div>
+                    {
+                        this.props.auth0.isAuthenticated ? <AboutCard /> : undefined
+                    }
+                    </div>
                 {
                     this.state.events.map((item, i) => {
                         <Link to='fromDetail'>
-                            <h1>
-                                from detail
-                            </h1>
+                            <AboutCard data={this.state.eventData} />
                         </Link>
                     })
                 }
@@ -37,4 +45,4 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default withAuth0(Home)

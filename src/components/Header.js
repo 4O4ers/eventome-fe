@@ -20,7 +20,7 @@ class Header extends Component {
                                     this.props.auth0.isAuthenticated ? <Link to='/profile'>profile</Link> : undefined
                                 }
                                 {
-                                    this.props.auth0.isAuthenticated ? <LogoutButton/> : <LoginButton/>
+                                    this.props.auth0.isAuthenticated ? <LogoutButton/>  : <LoginButton/>
                                 }
                             
                         </Nav>

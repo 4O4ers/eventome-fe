@@ -1,0 +1,9 @@
+{
+    "title": "an event for new students",
+    "participants": 100,
+    "location": "Amman, jordan ",
+    "favorites": [{"_id":"14rg46we4f356af4q5w"  }],
+    "description": "an event for somthing",
+    "rating": [{"_id":"14rg46we4f356af4q5w"  }],
+    "data":{"start":"12:00", "end":"15:00"}
+}
