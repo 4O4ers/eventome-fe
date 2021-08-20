@@ -71,3 +71,25 @@ We agreed on making Hamza Ahmad and Adham maintain and handle reviewing pull req
 ## APIs
 
 Auth0 - Stytch - Eventbrite - Picatic - SeatGeek - Full Contact - Places API - Gmail - Google Analytics - mailgun - Abstract IP Geolocation - apilayer ipstack - Battuta - Geoapify - Geocoding.ai - Google Maps - OpenStreetMap - RoadGoat Cities
+
+---
+
+## Wireframe
+
+1. main before login
+![](./src/wireframe/download.png)
+
+2. main after login
+![](./src/wireframe/main.jpg)
+
+3. event creation 
+![](./src/wireframe/create.jpg)
+
+4. preferences when loggin in
+![](./src/wireframe/preferences.jpg)
+
+5. profile
+![](./src/wireframe/profile.jpg)
+
+6.event details
+![](./src/wireframe/event.jpg)
