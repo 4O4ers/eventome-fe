@@ -17,21 +17,27 @@ import './App.css'
 import Home2 from './components/Home2';
 import { Button } from 'react-bootstrap';
 import CreateEvent from './components/CreateEvent';
+import 'dotenv';
+import Nav from './components/Nav';
 class App extends Component {
   constructor(props) {
     super(props)
   
     this.state = {
-       showButton:false
+       showButton:false,
+       showNav: false,
     }
   }
 
-    
+  showNav = () => {
+    this.setState({showNav: !this.state.showNav});
+  }
   render() {
     return (
       <div>
         <Router>
-        <Header />
+        <Header  showNav={this.showNav}/>
+        {this.state.showNav ? <Nav showNav={this.showNav}/> : undefined}
           <Switch>
             <Route exact path='/'>
               <Home />
@@ -52,17 +58,10 @@ class App extends Component {
             <Route exact path='/createEvent'>
               <CreateEvent />
             </Route>
-
-            <Footer />
           </Switch>
-        {
-           this.props.auth0.isAuthenticated && ! this.state.showButton ? <Link to='/createEvent'>
-           <Button onClick={()=>this.setState({
-             showButton:true
-           })}>Create event</Button>
-         </Link> : undefined
-        }
+        <Footer/>
         </Router>
+        
       </div>
     )
   }
