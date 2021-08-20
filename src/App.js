@@ -6,6 +6,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link,
 } from "react-router-dom";
 import Home from './components/Home'
 import Footer from './components/Footer'
@@ -14,7 +15,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AboutUs from './components/AboutUs'
 import './App.css'
 import Home2 from './components/Home2';
-class App extends Component {  
+import { Button } from 'react-bootstrap';
+import CreateEvent from './components/CreateEvent';
+class App extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       showButton:false
+    }
+  }
+
+    
   render() {
     return (
       <div>
@@ -37,8 +49,19 @@ class App extends Component {
               <Home2 />
             </Route>
 
+            <Route exact path='/createEvent'>
+              <CreateEvent />
+            </Route>
+
             <Footer />
           </Switch>
+        {
+           this.props.auth0.isAuthenticated && ! this.state.showButton ? <Link to='/createEvent'>
+           <Button onClick={()=>this.setState({
+             showButton:true
+           })}>Create event</Button>
+         </Link> : undefined
+        }
         </Router>
       </div>
     )
