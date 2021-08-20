@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 
-class App extends Component {
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AboutCard from './components/AboutCard';
+
+
+export class App extends Component {
   render() {
     return (
       <div>
-        
+        <AboutCard/>
+
       </div>
     )
   }
