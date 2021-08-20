@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import Profile from './components/Profile'
 import { withAuth0 } from '@auth0/auth0-react'
 import {
