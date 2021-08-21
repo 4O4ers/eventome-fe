@@ -5,7 +5,6 @@ import LoginButton from './LoginButton'
 import LogoutButton from './LogoutButton'
 import { withAuth0 } from '@auth0/auth0-react';
 import ProfilePic from './ProfilePic';
-//import { BsFillCaretDownFill } from "react-icons/bs";
 class Header extends Component {
     constructor() {
         super();
@@ -15,24 +14,14 @@ class Header extends Component {
         }
     }
     render() {
-        console.log(this.props.auth0.user);
         return (
-            <Navbar bg="dark" variant="dark" style={{zIndex: '1'}} >
+            <Navbar bg="dark" variant="dark" style={{zIndex: '2'}} >
                 <Container className='ml-5 mr-5'>
                     <Col align='start' xl='5'>
                         <Link to='/' style={{ textDecoration: 'none', color: 'white' }}><Navbar.Brand style={{fontSize: '1.5rem'}}>Eventome</Navbar.Brand></Link>
 
                     </Col>
                     <div>
-
-                            {/* {
-                                this.props.auth0.isAuthenticated && !this.state.showButton ? <Link to='/createEvent'>
-                                    <Button onClick={() => this.setState({
-                                        showButton: true
-                                    })}>Create event</Button>
-                                </Link> : undefined
-                                
-                            } */}
                             <img src="https://img.icons8.com/ios-glyphs/30/ffffff/chevron-down.png" alt=''
                             onClick={this.props.showNav} style={{cursor: 'pointer'}}/>
                         </div>

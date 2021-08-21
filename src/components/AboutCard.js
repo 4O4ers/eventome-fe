@@ -16,52 +16,63 @@ export class AboutCard extends Component {
     this.state = {
       favorite: false,
       rate: false,
+      opacity: 0,
     }
+  }
+  componentDidMount() {
+    let opacity = this.state.opacity;
+    let searchAnim = setInterval(() => {
+      this.setState({opacity});
+      opacity+=0.01;
+      if (opacity >= 1 ) {
+        clearInterval(searchAnim);
+      }
+    }, 5);
   }
   render() {
     return (
-      <div className='border rounded' >
+      <Container className='border rounded' style={{background: 'darkgray', opacity: `${this.state.opacity}`}} >
         <Row className='border-bottom'>
-          <Col align='end'>
+          <Col align='end' >
             <img src={this.state.favorite ? 'https://img.icons8.com/ios-glyphs/30/ff0000/like--v2.png' : "https://img.icons8.com/ios-glyphs/30/ff0000/like.png"} alt='' onClick={() => this.setState({ favorite: !this.state.favorite })} />
 
             <img src={this.state.rate ? "https://img.icons8.com/ios-glyphs/30/ffff00/star--v2.png" : `https://img.icons8.com/ios-glyphs/30/ffff00/star.png`} alt='' onClick={() => this.setState({ rate: !this.state.rate })} />
           </Col>
         </Row>
         <Row>
-          <Col sm='5' xl='2' lg='3' className='border'>
+          <Col xl='2'>
             <img src='https://picsum.photos/200' alt='' />
           </Col>
-          <Col  sm='5' xl='6' lg='6' className='border'>
-            <Row style={{height: '70%'}}>
+          <Col>
+            <Row style={{ height: '70%', paddingTop: '0.5rem' }}>
               <h3>Event title</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
 
 
             </Row>
             <Row>
-            <Col className='border'>
-            <Button>Attend</Button>
-            </Col>
-            <Col className='border' align='end' style={{ gap: '0.75rem'}}>
+              <Col >
+                <Button>Attend</Button>
+              </Col>
+              <Col align='end' style={{ gap: '0.75rem', display: 'flex', justifyContent: 'flex-end' }}>
+                <div style={{display: 'flex', gap: '1rem'}}>
+                  <div style={{ display: 'flex', gap: '0.25rem', textAlign: 'center', alignItems: 'center'}}>
+                    <img src="https://img.icons8.com/ios-glyphs/20/000000/user-male--v1.png" alt='' />
+                    650
+                  </div>
 
-              <div style={{display: 'flex',  gap: '0.25rem', textAlign:'center', border: 'solid red', }}>
-              <img src="https://img.icons8.com/ios-glyphs/20/000000/user-male--v1.png" alt=''/>
-              650
-              </div>
-
-              <div style={{display: 'flex', gap: '0.25rem', border: 'solid red'}}>
-              <img src="https://img.icons8.com/ios-glyphs/20/ffff00/star--v1.png" alt=''/>
-             8.65
-              </div>
-              
-            </Col>
+                  <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center' }}>
+                    <img src="https://img.icons8.com/ios-glyphs/20/ffff00/star--v1.png" alt='' />
+                    8.65
+                  </div>
+                </div>
+              </Col>
             </Row>
           </Col>
 
 
         </Row>
-      </div>
+      </Container>
       // <Container
       //   style={{
       //     display: "flex",
