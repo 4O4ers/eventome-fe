@@ -49,7 +49,6 @@ class Header extends Component {
                                 <div style={{ minWidth: '35px', minHeight: '35px', display: 'inline-block' }}>
                                     .
                                 </div>
-
                             </div>
                         }
 
