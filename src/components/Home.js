@@ -28,6 +28,7 @@ class Home extends Component {
                     />
                     <Button variant="outline-success">Search</Button>
                 </Form>
+                
                 <div>
                     {
                         this.props.auth0.isAuthenticated ? <AboutCard /> : undefined
