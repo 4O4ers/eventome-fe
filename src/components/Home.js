@@ -17,7 +17,7 @@ class Home extends Component {
 
     render() {
         return (
-            <>
+            <div >
                 <h1>Header</h1>
                 <Form className="d-flex">
                     <FormControl
@@ -41,7 +41,7 @@ class Home extends Component {
                         </Link>
                     })
                 }
-            </>
+            </div>
         )
     }
 }

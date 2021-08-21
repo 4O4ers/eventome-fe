@@ -6,19 +6,29 @@ import {
   Card,
   Container,
   Row,
-  Col,
+  Col
 } from "react-bootstrap";
 import '../App.css';
 
 export class AboutCard extends Component {
+  constructor() {
+    super();
+    this.state = {
+      favorite: false,
+      rate: false,
+    }
+  }
   render() {
     return (
-      <div
+      <Container
         style={{
           display: "flex",
           flexDirection: " column",
           alignItems: "center",
           marginTop: "10rem",
+          borderRadius: '15px',
+          border: 'solid red',
+          maxWidth: 'fit-content'
         }}
       >
         <div style={{ width: "70%", marginBottom: "5rem" }}>
@@ -32,16 +42,14 @@ export class AboutCard extends Component {
                     width: "45rem",
                   }}
                 >
-                  <div style={{ background: "#f2f2f2" }}>
-                    <Card.Title >
-                      <button
-                        variant="primary"
-                        style={{ border: "none", background: "none", float: "right" }}
-                      >
-                        favorite💙
-                      </button>
+                  <div style={{ background: "black", padding: '0.25rem 0' }}>
+                    <Card.Title style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '0.5rem', padding: '0.25rem'}}>
+  
+                        <img src={this.state.favorite ? 'https://img.icons8.com/ios-glyphs/30/ff0000/like--v2.png' : "https://img.icons8.com/ios-glyphs/30/ff0000/like.png"} alt='' onClick={() => this.setState({favorite: !this.state.favorite})}/>
+                        <img src= {this.state.rate ? "https://img.icons8.com/ios-glyphs/30/ffff00/star--v2.png" : `https://img.icons8.com/ios-glyphs/30/ffff00/star.png`}  alt='' onClick={() => this.setState({rate: !this.state.rate})}/>
                     </Card.Title>
                   </div>
+                  
                   <div style={{ display: "flex", flexDirection: "row" }}>
                     <Card.Img
                       variant="top"
@@ -71,7 +79,7 @@ export class AboutCard extends Component {
             </Row>
           </Container>
         </div>
-      </div>
+      </Container>
     );
   }
 }

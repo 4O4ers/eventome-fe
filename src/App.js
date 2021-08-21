@@ -34,11 +34,11 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <Router>
+      <div className='u-app'>
+        <Router className='u-app-route'>
         <Header  showNav={this.showNav}/>
         {this.state.showNav ? <Nav showNav={this.showNav}/> : undefined}
-          <Switch>
+          <Switch style={{display: 'flex',flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
             <Route exact path='/'>
               <Home />
             </Route>

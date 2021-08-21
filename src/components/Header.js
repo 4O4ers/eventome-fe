@@ -33,7 +33,7 @@ class Header extends Component {
                                 </Link> : undefined
                                 
                             } */}
-                            <img src="https://img.icons8.com/ios-glyphs/30/ffffff/double-down--v2.png" alt=''
+                            <img src="https://img.icons8.com/ios-glyphs/30/ffffff/chevron-down.png" alt=''
                             onClick={this.props.showNav} style={{cursor: 'pointer'}}/>
                         </div>
                     <Col xl='5' style={{  display: 'flex', gap: '10%', justifyContent: 'flex-end' }}>
