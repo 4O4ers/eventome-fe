@@ -24,7 +24,7 @@ export class CreateEvent extends Component {
     }
     render() {
         return (
-            <Container id='container' style={{maxWidth: `${this.state.maxWidth}%`, margin: 'auto',marginTop: `${this.state.top}%`,marginBottom: '0', border: 'solid black ', borderRadius: '15px', padding: '2%', opacity: `${this.state.opacity}`, minHeight: '90%'}}>
+            <Container id='container' style={{maxWidth: `${this.state.maxWidth}%`, margin: 'auto',marginTop: `${this.state.top}%`,marginBottom: '0', border: 'solid black ', borderRadius: '15px', padding: '2%', opacity: `${this.state.opacity}`, minHeight: '80vh'}}>
                 <h1>Create an event</h1>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

@@ -59,9 +59,9 @@ class App extends Component {
               <CreateEvent />
             </Route>
           </Switch>
-        <Footer/>
-        </Router>
         
+        </Router>
+        <Footer/>
       </div>
     )
   }
