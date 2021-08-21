@@ -4,7 +4,7 @@ class Footer extends Component {
     render() {
         return (
             <div style={{minHeight: '10%'}}>
-                <Link to='/about us' style={{ textDecoration: 'none' , color: 'white'}}>About</Link>
+                <Link to='/about us' className="footerClass">About</Link>
             </div>
         )
     }
