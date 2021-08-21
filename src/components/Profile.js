@@ -2,8 +2,12 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Card, Button } from "react-bootstrap";
 import { Container, Col, Row } from "react-bootstrap";
-import Footer from "./Footer";
-
+import { Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
@@ -12,15 +16,15 @@ const Profile = () => {
   }
 
   return (
-    isAuthenticated && (
+    <Container className='u-main' style={{ border: 'solid black' }}>
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          marginTop: "3rem",
           flexDirection: "column",
         }}
       >
+        <h1>.</h1>
         <Card
           style={{
             width: "30rem",
@@ -59,63 +63,35 @@ const Profile = () => {
             </Row>
             <Row>
               <Col>
-                <Button>my events</Button>
-                <Button>upp caming</Button>
+                <Link to='/favorites'>Favorites</Link> /
+                <Link to='/Created'>Created</Link> /
+                <Link to='/Attending'>Attending</Link>
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <Card
-                  style={{
-                    width: "45rem",
-                  }}
-                >
-                  <div style={{ background: "#f2f2f2" }}>
-                    <Card.Title>
-                      <button
-                        variant="primary"
-                        style={{
-                          border: "none",
-                          background: "none",
-                          float: "right",
-                        }}
-                      >
-                        favorite💙
-                      </button>
-                    </Card.Title>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <Card.Img
-                      variant="top"
-                      src="https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg"
-                      style={{ width: "10rem" }}
-                    />
-                    <Card.Body>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <Card.Title>Card Title</Card.Title>
-                      </div>
-                      <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </Card.Text>
-                      <Button variant="primary">Join Meeting</Button>
-                      <span>number of particebant👥 </span>
-                      <span>Raghiting⭐ </span>
-                    </Card.Body>
-                  </div>
-                </Card>
-              </Col>
-            </Row>
+            <div style={{ border: 'red' }}>
+              <Router className='u-app-route' >
+                  <Switch >
+
+                    <Route exact path='/favorites'>
+                      <h2>hello world</h2>
+                    </Route>
+
+                    <Route exact path='/Created'>
+                      <Profile />
+                    </Route>
+
+                    <Route exact path='/Attending'>
+                      <Button />
+                    </Route>
+                  </Switch>
+                {/* <Footer/> */}
+              </Router>
+
+            </div>
           </Container>
         </div>
-        <Footer/>
       </div>
-    )
+    </Container>
   );
 };
 

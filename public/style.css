@@ -2,7 +2,9 @@
   text-decoration: none;
   color: white;
 }
-
+.u-app-route {
+  min-height: 80vh;
+}
 .u-app {
   min-height: 90vh;
 }
@@ -48,9 +50,7 @@
 
 .headerAboutUsClass{
   text-align : center; 
-  margin-top : 100px  ;
-  padding : 20px;
-  font-size: 60px;
+  padding :  0 20px;
 }
 
 
@@ -137,3 +137,31 @@ button{
  padding-left: 20px;
 }
 
+.u-main-search {
+width: fit-content;
+position: relative;
+margin: auto;
+
+}
+.u-main-search div{
+position: absolute;
+top: 0;
+right: 0;
+}
+.u-main-search input {
+  outline-width: 0;
+  height: 52px;
+  border-radius: 25px 25px 25px 25px;
+  padding: auto 5rem;
+}
+.u-main {
+  border : solid black;
+  margin: 3rem auto;
+  min-height: 100vh;
+  padding:3rem;
+  background: white;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem
+}

@@ -19,7 +19,7 @@ export class Nav extends Component {
   }
   render() {
     return (
-      <div className ="navClass" style={{ top: `${this.state.navTop}px`}}>
+      <div className ="navClass" style={{ top: `${this.state.navTop}px`, zIndex: '1'}}>
         <Link className='Link' to='/createEvent' onClick={this.props.showNav}>Create</Link>
         <Link  className='Link' to='/profile' onClick={this.props.showNav}>My Events</Link>
         <Link  className='Link' to='/about us' onClick={this.props.showNav}>About</Link>

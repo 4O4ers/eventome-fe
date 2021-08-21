@@ -1,30 +1,12 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Container } from 'react-bootstrap';
-
 export class CreateEvent extends Component {
-    constructor() {
-        super();
-        this.state={
-            top: -90,
-            opacity: 0,
-        }
-    }
-    componentDidMount() {
-        let c = -90;
-        let o = .2;
-        let createAnim = setInterval(() => {
-            this.setState({top: c, opacity: o});
-            c+=2;
-            o+=0.018
-            if (c >= 5 && o >= 1 ) {
-              clearInterval(createAnim);
-            }
-          }, 5);
-    }
+
     render() {
         return (
-            <Container id='container' style={{maxWidth: `${this.state.maxWidth}%`, margin: 'auto',marginTop: `${this.state.top}%`,marginBottom: '0', border: 'solid black ', borderRadius: '15px', padding: '2%', opacity: `${this.state.opacity}`, minHeight: '80vh'}}>
+            <Container id='container' >
+                <h1>.</h1>
                 <h1>Create an event</h1>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -51,7 +33,11 @@ export class CreateEvent extends Component {
                 </Form.Group>
                 <Form.Label>Address</Form.Label>
                 <Form.Control type="text" placeholder="Enter the address" />
-
+                <input type="time" id="appt" name="appt"
+                    min="09:00" max="18:00" required />
+                <input type="date" id="start" name="trip-start"
+                    value="2018-07-22"
+                    min="2021-08-25"  />
                 {['radio'].map((type) => (
                     <div key={`inline-${type}`} className="mb-3">
                         <Form.Check
