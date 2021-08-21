@@ -1,13 +1,8 @@
-import React, { Component } from 'react'
-
-class Home2 extends Component {
-    render() {
-        return (
-            <div>
-                <h1>home 2</h1>
-            </div>
-        )
-    }
+let a = {
+    name: String,
+    _id: String,
+    favorites: Array,
+    email: String,
+    picture: String,
+    
 }
-
-export default Home2

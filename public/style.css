@@ -2,3 +2,21 @@
   text-decoration: none;
   color: white;
 }
+/* .u-app-route {
+  position: relative;
+  border: blue solid;
+}
+.u-app{
+  position: relative;
+  border: red solid;
+}
+.u-app::after {
+  content: ' ';
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left:0;
+  width: 100px;
+  height: 100px;
+  background: url(../src/imgs/Vector\ 3.png);
+} */

@@ -1,25 +1,44 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 
 export class CreateEvent extends Component {
+    constructor() {
+        super();
+        this.state={
+            top: -90,
+            opacity: 0,
+        }
+    }
+    componentDidMount() {
+        let c = -90;
+        let o = .2;
+        let createAnim = setInterval(() => {
+            this.setState({top: c, opacity: o});
+            c+=2;
+            o+=0.018
+            if (c >= 5 && o >= 1 ) {
+              clearInterval(createAnim);
+            }
+          }, 5);
+    }
     render() {
         return (
-            <div>
-                <h1>Craete An Event !</h1>
+            <Container id='container' style={{maxWidth: `${this.state.maxWidth}%`, margin: 'auto',marginTop: `${this.state.top}%`,marginBottom: '0', border: 'solid black ', borderRadius: '15px', padding: '2%', opacity: `${this.state.opacity}`, minHeight: '90%'}}>
+                <h1>Create an event</h1>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" placeholder="Enter the title " />
+                        <Form.Control type="text" placeholder="Event Title" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Detials</Form.Label>
+                        <Form.Label>Details</Form.Label>
                         <Form.Control as="textarea" rows={3} />
                     </Form.Group>
                 </Form>
 
                 <Form.Group className="position-relative mb-3">
-                    <Form.Label>upload img </Form.Label>
+                    <Form.Label>Upload banner</Form.Label>
                     <Form.Control
                         type="file"
                         required
@@ -55,7 +74,7 @@ export class CreateEvent extends Component {
 
                 <Button as="input" type="submit" value="Save" />{' '}
                 <Button as="input" type="submit" value="Cancel" />{' '}
-            </div>
+            </Container>
         )
     }
 }
