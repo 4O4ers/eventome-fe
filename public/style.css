@@ -83,7 +83,6 @@
 }
 
 .contactClass{
-  padding-top: 100px;
   width: 60%;
   margin: auto;
 }
@@ -172,19 +171,15 @@ right: 0;
 }
 
 .map-container {
-  height: 400px;
+  height: 200px;
   width: 400px;
-  margin-top: 5rem ;
   }
 
   
-
-
   .createEvContainer{
    
-    width: 60%;
+    width: 50%;
     margin: auto;
-    
   }
 
   .createEvContainer h2{
@@ -197,34 +192,51 @@ right: 0;
   }
 
   
-  /* body{
+   body{
  
   
-background-image : linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url("https://www.cityofgastonia.com/images/60776786_1109751102559731_7345825498565443584_o.jpg");
+background-image : linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url("https://images.unsplash.com/photo-1511578314322-379afb476865?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29ycG9yYXRlJTIwZXZlbnR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80");
   min-width: 100%;
   min-height: 100%;
   background-size: cover;
   background-position: center;
   
   
-} */
+} 
 
 .formDiv{
   background-color:white;
   text-align: center;
+  margin-bottom: 100px;
   
   
   
 
 }
 
-.formDiv input ,.formDiv textarea {
-  width: 40%;
+.formDiv input ,.formDiv textarea  {
+  width: 80%;
   margin: auto;
   padding: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   background-color: #DCDCDC;
   
+  
+}
+ .formDiv label{
+  text-align: left;
+}
+.formDiv textarea{
+  height: 30px;
+}
+
+.formDiv .btn{
+  background-color:grey;
+  font-weight: bold;
+  color: black;
+  width: 200px;
+  margin-left: 30px;
+  margin-bottom: 100px
 }
 
 .mapClass{
@@ -234,6 +246,22 @@ background-image : linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url(
 
   
 }
+
+
+.check{
+  position: relative;
+  top: 20px;
+  left: 30px;
+  padding:20px;
+}
+
+.check label{
+  position: relative;
+  bottom: 50px;
+  left: 20px;
+}
+
+/////////////////////////////////////////////////////////////////////////
 
 .deaialsContainer{
   margin-left: 50px;
@@ -502,6 +530,8 @@ a {
     margin: 0;
   }
 }
+
+
 
   
   

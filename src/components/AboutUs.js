@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Carousel, Form, Row, Col, Button, Container, Image } from 'react-bootstrap';
-// import hamza from '../components/Images/hamza.jpg';
-// import balqees from '../components/Images/balqees.jpeg';
-// import ali from '../components/Images/ali.jpeg';
-// import adham from '../components/Images/adham.jpeg';
+import { Form, Row, Col, Button, Container, Image } from 'react-bootstrap';
+import adham from '../components/Images/adham.jpeg';
+import Vector from '../components/Images/Vector 3.png';
+import Vector2 from '../components/Images/Vector 4.png';
+import vector5 from '../components/Images/Vector 5.png';
 
 export class About extends Component {
     render() {
         return (
             <div>
-                <h1>.</h1>
+                <img className='vector3' src={Vector} alt =''/>
                 <h1 className="headerAboutUsClass" >MEET OUR TEAM</h1>
                 <p className="HeaderParClass">We are all very different. We were born in different cities, at different times, we love different music,
                     food, movies. But we have something that unites us all.
                     It is our company. We are its heart. We are not just a team, we are a family. </p>
-
-
                 <Container className="infoClass">
                     <Row>
                         <Col xs={6} md={4}>
@@ -37,59 +35,81 @@ export class About extends Component {
                         </Col>
                     </Row>
                 </Container>
-{/* 
-                <Carousel className="carouselClass">
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={hamza}
-                            alt="Hamza Ahmad"
-                        />
-                        <Carousel.Caption>
-                            <h3>Hamza Ahmad</h3>
-                            <p>Software Development</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={balqees}
-                            alt="Balqees Alfasatlah"
-                        />
 
-                        <Carousel.Caption>
-                            <h3>Balqees Alfasatlah</h3>
-                            <p>Software Development</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={ali}
-                            alt="Ali Alhjouj"
-                        />
-
-                        <Carousel.Caption>
-                            <h3>Ali Alhjouj</h3>
-                            <p>Software Development</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={adham}
-                            alt="Adham"
-                        />
-
-                        <Carousel.Caption>
-                            <h3>Adham</h3>
-                            <p>Software Development</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel> */}
-
-
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src='https://ca.slack-edge.com/TNGRRLUMA-U0222A9LEBH-fbab9887da8f-512' />
+                                </div>
+                                <div class="team-content">
+                                    <h3 class="name">Michele Miller</h3>
+                                    <h4 class="title">Web Developer</h4>
+                                </div>
+                                <ul class="social">
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src='https://ca.slack-edge.com/TNGRRLUMA-U022E185A5B-1f75b5157695-512' />
+                                </div>
+                                <div class="team-content">
+                                    <h3 class="name">Patricia Knott</h3>
+                                    <h4 class="title">Web Developer</h4>
+                                </div>
+                                <ul class="social">
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src={adham} />
+                                </div>
+                                <div class="team-content">
+                                    <h3 class="name">Justin Ramos</h3>
+                                    <h4 class="title">Web Developer</h4>
+                                </div>
+                                <ul class="social">
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src='https://ca.slack-edge.com/TNGRRLUMA-U022H3JCZ7U-218a5a88076d-512' />
+                                </div>
+                                <div class="team-content">
+                                    <h3 class="name">Mary Huntley</h3>
+                                    <h4 class="title">Web Developer</h4>
+                                </div>
+                                <ul class="social">
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+                                    <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img className='vector4' src={Vector2} alt =''/>
+                <img className='vector5' src={vector5} alt =''/>
 
                 <div className="contactClass" >
                     <h3>Contact Us</h3>
@@ -118,16 +138,6 @@ export class About extends Component {
                     </Form.Group>
                     <Button variant="outline-dark">Send</Button>
                 </div>
-
-
-
-
-
-
-
-
-
-
             </div>
         )
     }

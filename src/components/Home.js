@@ -130,10 +130,13 @@ class Home extends Component {
         {/* <div>
                     {this.props.auth0.isAuthenticated ? <AboutCard /> : undefined}
                 </div> */}
+
         {/* {this.state.events.map((item, i) => (<Link to='fromDetail'><AboutCard data={this.state.eventData} /></Link>))} */}
       </div>
     );
   }
+
+          
 }
 
 export default withAuth0(Home);

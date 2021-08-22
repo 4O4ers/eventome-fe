@@ -52,6 +52,8 @@ export class CreateEvent extends Component {
   render() {
     return (
       <div className="cont" >
+
+
       <div className="createEvContainer" >
       <Container id="container" >
         <h2>Next, we just need a few more details.</h2>
@@ -68,107 +70,158 @@ export class CreateEvent extends Component {
             //   }}
             >
 
-              
-              <Form.Group className ="group1"
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
+
+              <Form
+                onSubmit={(e) => {
+                  this.creatEvent(e);
+                }}
               >
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Event Title"
-                  required
-                  onChange={(e) =>
-                    this.setState({
-                      event: { ...this.state.event, title: e.target.value },
-                    })
-                  }
-                />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Details</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
+
+                <Row>
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+
+                      <Form.Label>Title</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Event Title"
+                        required
+                        onChange={(e) =>
+                          this.setState({
+                            event: { ...this.state.event, title: e.target.value },
+                          })
+                        }
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlTextarea1"
+                    >
+                      <Form.Label>Details</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={3}
+                        onChange={(e) =>
+                          this.setState({
+                            event: {
+                              ...this.state.event,
+                              description: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+              </Form>
+
+              <Row>
+                <Col>
+
+
+                  <Form.Label>Address</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter the address"
+                    value={
+                      "Lat: " +
+                      this.state.event.address.lng +
+                      "       " +
+                      "Lng: " +
+                      this.state.event.address.lat
+                    }
+                  />
+
+                </Col><Col>
+                  <Form.Group className="position-relative mb-3">
+                    <Form.Label>Upload banner</Form.Label>
+                    <Form.Control
+                      type="file"
+                      required
+                      name="img"
+                      accept="image/png, image/jpeg"
+                      onChange={(e) =>
+                        this.setState({
+                          event: { ...this.state.event, picture: e.target.value },
+                        })
+                      }
+                    />
+                    <img src={this.state.picture} alt="" />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <input
+                type="time"
+                id="appt"
+                name="appt"
+                min="09:00"
+                max="18:00"
+                value={this.state.event.time[0]}
+                required
+                onChange={(e) =>
+                  this.setState({
+                    event: {
+                      ...this.state.event,
+                      time: [e.target.value, this.state.event.time[0]],
+                    },
+                  })
+                }
+              // time[1] time: [e.target.value, this.state.event.]
+              />
+              <input
+                type="date"
+                id="start"
+                name="trip-start"
+                value={this.state.event.time[0]}
+                min="2021-08-25"
+                onChange={(e) =>
+                  this.setState({
+                    event: {
+                      ...this.state.event,
+                      time: [this.state.event.time[0], e.target.value],
+                    },
+                  })
+                }
+              // time: [this.state.time[0], e.target.value]
+              />
+
+              {["radio"].map((type) => (
+                <div
+                  key={`inline-${type}`}
+                  className="mb-3"
                   onChange={(e) =>
                     this.setState({
                       event: {
                         ...this.state.event,
-                        description: e.target.value,
+                        isPublic: e.target.value
                       },
                     })
                   }
-                />
-              </Form.Group>
-            </Form>
+                >
+                  <Form.Check className="check"
+                    inline
+                    label="Public"
+                    name="group1"
+                    type={type}
+                    id={`inline-${type}-1`}
+                    value={true}
+                  />
+                  <Form.Check className="check"
+                    inline
+                    label="Private"
+                    name="group1"
+                    type={type}
+                    id={`inline-${type}-2`}
+                    value={false}
+                  />
+                </div>
+              ))}
 
-            <Form.Label>Address</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter the address"
-              value={
-                "Lat: " +
-                this.state.event.address.lng +
-                "       " +
-                "Lng: " +
-                this.state.event.address.lat
-              }
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Form.Group className="position-relative mb-3">
-            <Form.Label>Upload banner</Form.Label>
-            <Form.Control
-              type="file"
-              required
-              name="img"
-              accept="image/png, image/jpeg"
-              onChange={(e) =>
-                this.setState({
-                  event: { ...this.state.event, picture: e.target.value },
-                })
-              }
-            />
-            <img src={this.state.picture} alt="" />
-          </Form.Group>
-          <input
-            type="time"
-            id="appt"
-            name="appt"
-            min="09:00"
-            max="18:00"
-            value={this.state.event.time[0]}
-            required
-            onChange={(e) =>
-              this.setState({
-                event: {
-                  ...this.state.event,
-                  time: [e.target.value, this.state.event.time[0]],
-                },
-              })
-            }
-            // time[1] time: [e.target.value, this.state.event.]
-          />
-          <input
-            type="date"
-            id="start"
-            name="trip-start"
-            value={this.state.event.time[0]}
-            min="2021-08-25"
-            onChange={(e) =>
-              this.setState({
-                event: {
-                  ...this.state.event,
-                  time: [this.state.event.time[0], e.target.value],
-                },
-              })
-            }
-            // time: [this.state.time[0], e.target.value]
-          />
 
           {["radio"].map((type) => (
             <div
@@ -204,13 +257,14 @@ export class CreateEvent extends Component {
         </Row>
         <Button as="input" type="submit" value="Save"  onClick={this.creatEvent}/>{" "}
         <Button as="input" type="submit" value="Cancel" />{" "}
+
         </div>
       </Container>
       </div>
-      </div>
+        </div >
 
-     
-    );
+
+        );
   }
 }
 
