@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Map from "./Map";
 import axios from "axios";
+import 'dotenv';
 export class CreateEvent extends Component {
   constructor() {
     super();
@@ -11,7 +12,7 @@ export class CreateEvent extends Component {
         title: "",
         address: { lat: 0, lng: 0 },
         picture: "",
-        favorites: [],
+        favorites: '',
         time: [],
         ratings: [],
         attending: [],
@@ -26,27 +27,25 @@ export class CreateEvent extends Component {
     };
   }
 
+  
   lngLat = async ({ lng, lat }) => {
     await this.setState({
       event: { ...this.state.event, address: { lat, lng } },
     });
-    console.log(this.state);
+
   };
   creatEvent = (e) => {
     e.preventDefault();
 
     let config = {
       method: "post",
-      baseURL: "http://localhost:8000",
+      baseURL: "http://localhost:3001" ,
       url: "/event",
       data: this.state.event,
     };
     axios(config).then((result) => {
-      console.log(result.data);
-      let eventData = this.state;
-      eventData.push(result.data);
       this.setState({
-        events: eventData,
+        events: result.data,
       });
     });
   };
@@ -59,9 +58,9 @@ export class CreateEvent extends Component {
         <Row>
           <Col>
             <Form
-              onSubmit={(e) => {
-                this.creatEvent(e);
-              }}
+            //   onSubmit={(e) => {
+            //     this.creatEvent(e);
+            //   }}
             >
               <Form.Group
                 className="mb-3"
@@ -196,7 +195,7 @@ export class CreateEvent extends Component {
             </div>
           ))}
         </Row>
-        <Button as="input" type="submit" value="Save" />{" "}
+        <Button as="input" type="submit" value="Save"  onClick={this.creatEvent}/>{" "}
         <Button as="input" type="submit" value="Cancel" />{" "}
       </Container>
     );
