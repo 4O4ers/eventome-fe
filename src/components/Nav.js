@@ -23,6 +23,7 @@ export class Nav extends Component {
         <Link className='Link' to='/createEvent' onClick={this.props.showNav}>Create</Link>
         <Link  className='Link' to='/profile' onClick={this.props.showNav}>My Events</Link>
         <Link  className='Link' to='/about us' onClick={this.props.showNav}>About</Link>
+        <Link  className='Link' to='/EventDetails' onClick={this.props.showNav}>Event Details</Link>
       </div>
     )
   }

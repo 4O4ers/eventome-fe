@@ -1,7 +1,9 @@
+
 .Link {
   text-decoration: none;
   color: white;
 }
+
 .u-app-route {
   min-height: 80vh;
 }
@@ -174,3 +176,155 @@ right: 0;
   width: 400px;
   margin-top: 5rem ;
   }
+
+  
+
+
+  .createEvContainer{
+   
+    width: 60%;
+    margin: auto;
+    
+  }
+
+  .createEvContainer h2{
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    color:white;
+    font-weight: bold;
+    
+  }
+
+  
+  /* body{
+ 
+  
+background-image : linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url("https://www.cityofgastonia.com/images/60776786_1109751102559731_7345825498565443584_o.jpg");
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+  
+  
+} */
+
+.formDiv{
+  background-color:white;
+  text-align: center;
+  
+  
+  
+
+}
+
+.formDiv input ,.formDiv textarea {
+  width: 40%;
+  margin: auto;
+  padding: 10px;
+  margin-bottom: 50px;
+  background-color: #DCDCDC;
+  
+}
+
+.mapClass{
+ padding-top: 20px;
+  width: 50%;
+  margin: auto;
+
+  
+}
+
+.deaialsContainer{
+  margin-left: 50px;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.deaialsContainer h2 , h4{
+  padding: 30px;
+}
+
+.deaialsContainer p{
+  width: 300px;
+}
+
+.deaialsContainer img{
+  width: 500px;
+}
+ .userInfo {
+   display: flex;
+
+ }
+
+ .userInfo img{
+   width: 70px;
+   margin-top: 30px;
+ }
+
+ .userInfo h4{
+   margin-top: 30px;
+ }
+
+ .par{
+   margin-top: 30px;
+ }
+
+ span{
+   font-weight: bold;
+ }
+
+ 
+
+.rightDetails h3 {
+  padding-top: 20px;
+}
+
+.comments{
+  width: 60%;
+  border: 1px solid grey;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 100px;
+  margin-top: 130px;
+}
+
+.comments h2{
+  margin: 30px;
+  padding-bottom: 30px;
+}
+
+.containComments{
+  width: 100%;
+}
+
+.userComment {
+  display: flex;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  border: 1px solid black;
+
+  
+}
+
+.userComment img{
+  width: 80px;
+  margin-left: 150px;
+  margin-right: 20px;
+}
+
+ button{
+  width: 100px;
+  height: 40px;
+  position: relative;
+  left: 5%;
+  
+}
+
+
+
+
+
+  
+  
