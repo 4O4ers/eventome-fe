@@ -16,6 +16,7 @@ import './App.css'
 import CreateEvent from './components/CreateEvent';
 import 'dotenv';
 import Nav from './components/Nav';
+import EventDetails from './components/EventDetails';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -54,6 +55,10 @@ class App extends Component {
 
           <Route exact path='/createEvent'>
             <CreateEvent />
+          </Route>
+
+          <Route exact path='/EventDetails'>
+            <EventDetails />
           </Route>
           
         </Switch>

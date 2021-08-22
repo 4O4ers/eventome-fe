@@ -51,10 +51,15 @@ export class CreateEvent extends Component {
   };
   render() {
     return (
-      <Container id="container">
-        <Map lngLat={this.lngLat} />
+      <div className="cont" >
+      <div className="createEvContainer" >
+      <Container id="container" >
+        <h2>Next, we just need a few more details.</h2>
+        <div className="formDiv">
+          <div className="mapClass">
+        <Map  lngLat={this.lngLat}/>
+        </div>
         <h1 style={{ color: "white" }}>.</h1>
-        <h1>Create an event</h1>
         <Row>
           <Col>
             <Form
@@ -62,7 +67,9 @@ export class CreateEvent extends Component {
             //     this.creatEvent(e);
             //   }}
             >
-              <Form.Group
+
+              
+              <Form.Group className ="group1"
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
@@ -197,7 +204,12 @@ export class CreateEvent extends Component {
         </Row>
         <Button as="input" type="submit" value="Save"  onClick={this.creatEvent}/>{" "}
         <Button as="input" type="submit" value="Cancel" />{" "}
+        </div>
       </Container>
+      </div>
+      </div>
+
+     
     );
   }
 }
