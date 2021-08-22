@@ -59,6 +59,7 @@ shrinkSearch = () => {
                 </div> */}
                 {this.state.events.map((item, i) => (<Link to='fromDetail'><AboutCard data={this.state.eventData} /></Link>))}
             </div>
+            
         )
     }
 }

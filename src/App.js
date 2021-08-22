@@ -8,7 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './components/Home'
-//import Footer from './components/Footer'
+import Footer from './components/Footer'
 import Header from './components/Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AboutUs from './components/AboutUs'
@@ -58,7 +58,7 @@ class App extends Component {
           
         </Switch>
         </div>
-        {/* <Footer/> */}
+        <Footer/>
       </Router>
 
     )
