@@ -52,7 +52,7 @@ export class AboutCard extends Component {
       this.setState({
         events: result.data,
       });
-      //console.log(this.state.data.favorites);
+      
     }).catch((err) => console.log('errrrrrrrrrrrrrrrrrrrrroooooooooooooooooooorrrrrrrrrrr'));
   }
   render() {

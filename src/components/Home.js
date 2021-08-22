@@ -13,6 +13,7 @@ class Home extends Component {
             events: [],
             eventData: data,
             searchWidth: 75,
+            idd:""
         }
     }
     componentDidMount = () => {
@@ -49,6 +50,7 @@ class Home extends Component {
             }
         }, 1);
     }
+    
     render() {
         return (
             <div >
