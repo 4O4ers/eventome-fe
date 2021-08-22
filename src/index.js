@@ -6,8 +6,8 @@ import 'dotenv';
 
 ReactDOM.render(
   <Auth0Provider
-    domain={process.env.REACT_APP_DOMAIN}
-    clientId={process.env.REACT_APP_CLIENT_ID}
+    domain='dev-q2sq7h2c.us.auth0.com'
+    clientId="kSkSY1mEh6xPFSA94sb9ORbDNUDtpRbi"
     redirectUri={window.location.origin}
   >
     <App />

@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import Map from "./Map";
 import axios from "axios";
+import 'dotenv';
 export class CreateEvent extends Component {
   constructor() {
     super();
@@ -11,7 +12,7 @@ export class CreateEvent extends Component {
         title: "",
         address: { lat: 0, lng: 0 },
         picture: "",
-        favorites: [],
+        favorites: '',
         time: [],
         ratings: [],
         attending: [],
@@ -26,42 +27,49 @@ export class CreateEvent extends Component {
     };
   }
 
+  
   lngLat = async ({ lng, lat }) => {
     await this.setState({
       event: { ...this.state.event, address: { lat, lng } },
     });
-    console.log(this.state);
+
   };
   creatEvent = (e) => {
     e.preventDefault();
 
     let config = {
       method: "post",
-      baseURL: "http://localhost:8000",
+      baseURL: "http://localhost:3001" ,
       url: "/event",
       data: this.state.event,
     };
     axios(config).then((result) => {
-      console.log(result.data);
-      let eventData = this.state;
-      eventData.push(result.data);
       this.setState({
-        events: eventData,
+        events: result.data,
       });
     });
   };
   render() {
     return (
       <div className="cont" >
-        <div className="createEvContainer" >
-          <Container id="container" >
-            <h2>Next, we just need a few more details.</h2>
-            <div className="formDiv">
-              <div className="mapClass">
-                <Map lngLat={this.lngLat} />
-            
-              </div>
-              <h1 style={{ color: "white" }}>.</h1>
+
+
+      <div className="createEvContainer" >
+      <Container id="container" >
+        <h2>Next, we just need a few more details.</h2>
+        <div className="formDiv">
+          <div className="mapClass">
+        <Map  lngLat={this.lngLat}/>
+        </div>
+        <h1 style={{ color: "white" }}>.</h1>
+        <Row>
+          <Col>
+            <Form
+            //   onSubmit={(e) => {
+            //     this.creatEvent(e);
+            //   }}
+            >
+
 
               <Form
                 onSubmit={(e) => {
@@ -214,10 +222,42 @@ export class CreateEvent extends Component {
                 </div>
               ))}
 
-              
-               
-            <Button className ="btn" as="input" type="submit" value="Save" />{" "}
-            <Button as="input" type="submit" value="Cancel" />{" "}
+
+          {["radio"].map((type) => (
+            <div
+              key={`inline-${type}`}
+              className="mb-3"
+              onChange={(e) =>
+                this.setState({
+                  event: {
+                    ...this.state.event,
+                    isPublic:  e.target.value 
+                  },
+                })
+              }
+            >
+              <Form.Check
+                inline
+                label="Public"
+                name="group1"
+                type={type}
+                id={`inline-${type}-1`}
+                value={true}
+              />
+              <Form.Check
+                inline
+                label="Private"
+                name="group1"
+                type={type}
+                id={`inline-${type}-2`}
+                value={false}
+              />
+            </div>
+          ))}
+        </Row>
+        <Button as="input" type="submit" value="Save"  onClick={this.creatEvent}/>{" "}
+        <Button as="input" type="submit" value="Cancel" />{" "}
+
         </div>
       </Container>
       </div>
