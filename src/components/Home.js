@@ -19,8 +19,18 @@ expandSearch = () => {
     let c = this.state.searchWidth;
     let searchAnim = setInterval(() => {
       this.setState({searchWidth: c});
-      c+=4;
+      c+=5;
       if (c >= 300 ) {
+        clearInterval(searchAnim);
+      }
+    }, 1);
+}
+shrinkSearch = () => {
+    let c = this.state.searchWidth;
+    let searchAnim = setInterval(() => {
+      this.setState({searchWidth: c});
+      c-=5;
+      if (c <= 75) {
         clearInterval(searchAnim);
       }
     }, 1);
@@ -29,7 +39,7 @@ expandSearch = () => {
         return (
             <div >
                 <h1>.</h1>
-                <Form className="u-main-search" onMouseEnter={this.expandSearch}>
+                <Form className="u-main-search" onMouseEnter={this.expandSearch} onMouseLeave={this.shrinkSearch}>
                     <input 
                         type="text"
                         placeholder="title, keyword, descripiton ..."
