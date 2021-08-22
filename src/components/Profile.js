@@ -37,11 +37,12 @@ export class Profile extends Component {
       .catch((err) =>
         console.log("errrrrrrrrrrrrrrrrrrrrroooooooooooooooooooorrrrrrrrrrr")
       );
+      
       let config2 = {
         method: "put",
         baseURL: `http://localhost:3001`,
         url: `/user/${this.props.auth0.user.email}`,
-        data: newArr
+        data: ''
       };
       axios(config2).then((result) => {
         console.log(result)       
