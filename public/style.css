@@ -173,6 +173,8 @@ right: 0;
 .map-container {
   height: 200px;
   width: 400px;
+  margin: auto;
+  margin-bottom: 130px;
   }
 
   
@@ -180,6 +182,8 @@ right: 0;
    
     width: 50%;
     margin: auto;
+    
+    
   }
 
   .createEvContainer h2{
@@ -191,28 +195,49 @@ right: 0;
     
   }
 
+  .formTitle{
+  
+    padding-bottom: 30px;
+    text-align: center;
+    color: blue;
+    
+    
+  }
+
   
    body{
- 
+
+
+
   
-background-image : linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url("https://images.unsplash.com/photo-1511578314322-379afb476865?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29ycG9yYXRlJTIwZXZlbnR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80");
+  background-image : linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url("https://images.unsplash.com/photo-1511578314322-379afb476865?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29ycG9yYXRlJTIwZXZlbnR8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80");
   min-width: 100%;
   min-height: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: center; 
+  
+  
   
   
 } 
+
+
 
 .formDiv{
   background-color:white;
   text-align: center;
   margin-bottom: 100px;
+  border-radius: 30px;
+ 
+ 
   
-  
-  
+  /* box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3); */
+
+    
 
 }
+
+
 
 .formDiv input ,.formDiv textarea  {
   width: 80%;
@@ -220,11 +245,22 @@ background-image : linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url(
   padding: 10px;
   margin-bottom: 20px;
   background-color: #DCDCDC;
+  border-radius: 8px;
+  
   
   
 }
+
+
+
+
+@keyframes moving {
+  from{left: 0px;}
+  to{right: 300px;}
+}
  .formDiv label{
   text-align: left;
+ 
 }
 .formDiv textarea{
   height: 30px;
@@ -233,10 +269,11 @@ background-image : linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url(
 .formDiv .btn{
   background-color:grey;
   font-weight: bold;
-  color: black;
+  color: white;
   width: 200px;
   margin-left: 30px;
-  margin-bottom: 100px
+  margin-bottom: 100px;
+  
 }
 
 .mapClass{
@@ -251,15 +288,16 @@ background-image : linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)) , url(
 .check{
   position: relative;
   top: 20px;
-  left: 30px;
-  padding:20px;
+  left: 10px;
+  padding:50px;
+  margin-left: 10px;
+  width: 50px;
+  
 }
 
-.check label{
-  position: relative;
-  bottom: 50px;
-  left: 20px;
-}
+
+
+
 
 /////////////////////////////////////////////////////////////////////////
 
