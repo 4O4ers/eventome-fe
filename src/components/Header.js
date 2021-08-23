@@ -15,7 +15,7 @@ class Header extends Component {
     }
     render() {
         return (
-            <Navbar bg="dark" variant="dark" style={{zIndex: '2'}} >
+            <Navbar variant="dark" style={{zIndex: '2',background:'#373636'}} >
                 <Container className='ml-5 mr-5'>
                     <Col align='start' xl='5'>
                         <Link to='/' style={{ textDecoration: 'none', color: 'white' }}><Navbar.Brand style={{fontSize: '1.5rem'}}>Eventome</Navbar.Brand></Link>

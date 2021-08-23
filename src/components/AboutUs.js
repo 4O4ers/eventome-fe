@@ -44,7 +44,7 @@ export class About extends Component {
                                     <img class="img-fluid" src='https://ca.slack-edge.com/TNGRRLUMA-U0222A9LEBH-fbab9887da8f-512' />
                                 </div>
                                 <div class="team-content">
-                                    <h3 class="name">Michele Miller</h3>
+                                    <h3 class="name">Hamza Ahmad</h3>
                                     <h4 class="title">Web Developer</h4>
                                 </div>
                                 <ul class="social">
@@ -61,7 +61,7 @@ export class About extends Component {
                                     <img class="img-fluid" src='https://ca.slack-edge.com/TNGRRLUMA-U022E185A5B-1f75b5157695-512' />
                                 </div>
                                 <div class="team-content">
-                                    <h3 class="name">Patricia Knott</h3>
+                                    <h3 class="name">balqess Alfasatlah</h3>
                                     <h4 class="title">Web Developer</h4>
                                 </div>
                                 <ul class="social">
@@ -78,7 +78,7 @@ export class About extends Component {
                                     <img class="img-fluid" src={adham} />
                                 </div>
                                 <div class="team-content">
-                                    <h3 class="name">Justin Ramos</h3>
+                                    <h3 class="name">Adham Mhaydat</h3>
                                     <h4 class="title">Web Developer</h4>
                                 </div>
                                 <ul class="social">
@@ -95,7 +95,7 @@ export class About extends Component {
                                     <img class="img-fluid" src='https://ca.slack-edge.com/TNGRRLUMA-U022H3JCZ7U-218a5a88076d-512' />
                                 </div>
                                 <div class="team-content">
-                                    <h3 class="name">Mary Huntley</h3>
+                                    <h3 class="name">Ali Alhjouj</h3>
                                     <h4 class="title">Web Developer</h4>
                                 </div>
                                 <ul class="social">
@@ -115,21 +115,22 @@ export class About extends Component {
                     <h3>Contact Us</h3>
 
                     <Row className="mb-3" >
-                        <Form.Group as={Col} controlId="formGridEmail">
+                        <div className='input'>
+                        <Form.Group  controlId="formGridEmail">
                             <Form.Label>Name</Form.Label>
                             <Form.Control type="text" />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Group  controlId="formGridPassword">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Group  controlId="formGridPassword">
                             <Form.Label>Phone</Form.Label>
                             <Form.Control type="text" />
                         </Form.Group>
-
+                        </div>
                     </Row>
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
