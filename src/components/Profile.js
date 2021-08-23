@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Profiled from './Profiled.css'
-import Vector from '../components/Images/Vector 3.png';
-import Vector2 from '../components/Images/Vector 4.png';
-import vector5 from '../components/Images/Vector 5.png';
+import Profiled from "./Profiled.css";
+import Vector from "../components/Images/Vector 3.png";
+import Vector2 from "../components/Images/Vector 4.png";
+import vector5 from "../components/Images/Vector 5.png";
 
 export class Profile extends Component {
   constructor() {
@@ -16,27 +16,33 @@ export class Profile extends Component {
     this.state = {
       showFavoret: false,
       data: [],
+      events: [],
     };
   }
-  componentDidMount() { this.getFavoret() }
+  componentDidMount() {}
   getFavoret = () => {
-
     let config = {
       method: "get",
-      baseURL: `http://localhost:3001`,
+      baseURL: `http://localhost:8000`,
       url: `/event`,
       data: this.state.data,
     };
     axios(config)
       .then((result) => {
-        let newArr = result.data.map(({ _id, favorites }) => {
-
-          return ({ _id, favorites })
-        }).map(({ _id }) => _id).join('^')
+        let newArr = result.data
+          .map(({ _id, favorites }) => {
+            return { _id, favorites };
+          })
+          .map(({ _id }) => _id)
+          .join("^");
         console.log(newArr);
+
         this.setState({
           events: result.data,
+          showFavoret: true,
         });
+        this.state.events.map(ele=>{console.log(ele.title)})
+         
       })
       .catch((err) =>
         console.log("errrrrrrrrrrrrrrrrrrrrroooooooooooooooooooorrrrrrrrrrr")
@@ -57,55 +63,62 @@ export class Profile extends Component {
     return (
       <div>
         <div>
-        <img className='vector1' src={Vector} alt='' />
-        <img className='vector2' src={Vector2} alt='' />
-        <img className='vector7' src={vector5} alt='' />
+          <img className="vector1" src={Vector} alt="" />
+          <img className="vector2" src={Vector2} alt="" />
+          <img className="vector7" src={vector5} alt="" />
         </div>
-        {this.props.auth0.isAuthenticated ?
+        {this.props.auth0.isAuthenticated ? (
           <>
             <div class="container">
               <div class="member member-box">
-                <img class="img-member img" src={this.props.auth0.user.picture}
-                  alt={this.props.auth0.user.name} />
+                <img
+                  class="img-member img"
+                  src={this.props.auth0.user.picture}
+                  alt={this.props.auth0.user.name}
+                />
 
-                <h2 class="name-member name">{this.props.auth0.user.name}<i class="fa fa-check" aria-hidden="true"></i></h2>
-                <h4 class="expertise-member expertise">{this.props.auth0.user.nickname}</h4>
+                <h2 class="name-member name">
+                  {this.props.auth0.user.name}
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </h2>
+                <h4 class="expertise-member expertise">
+                  {this.props.auth0.user.nickname}
+                </h4>
 
                 <blockquote>{this.props.auth0.user.email}</blockquote>
               </div>
             </div>
 
-
-
             <div>
-              <p className='col'>MY Events</p>
+              <p className="col">MY Events</p>
             </div>
-            <div className='link'>
-              <Link to="/favorites">Favorites</Link>
-              <Link to="/Created">Created</Link>
-              <Link to="/Attending">Attending</Link>
+            <div className="link">
+              <Button
+                onClick={() => {
+                  this.getFavoret();
+                }}
+              >
+                Favorites
+              </Button>
+              <Button>Created</Button>
+              <Button>Attending</Button>
             </div>
-            <div style={{ border: "red" }}>
-              <Router className="u-app-route">
-                <Switch>
-                  <Route exact path="/favorites">
-                    <h2>hello world</h2>
-                  </Route>
-
-                  <Route exact path="/Created">
-                    <Profile />
-                  </Route>
-
-                  <Route exact path="/Attending">
-                    <Button />
-                  </Route>
-                </Switch>
-                {/* <Footer/> */}
-              </Router>
+            <div>
+              {this.state.showFavoret && <>{this.state.events.map(ele=>{
+              return(<Card>
+                    <Card.Body>
+                      <Card.Img alt="no image yet" />
+                      <Card.Title>{ele.title}</Card.Title>
+                      <Card.Text></Card.Text>
+                    </Card.Body>
+                  </Card>)})}</>
+                
+                  
+                
+              }
             </div>
-
-
-          </> : undefined}
+          </>
+        ) : undefined}
       </div>
     );
   }
