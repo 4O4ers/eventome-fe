@@ -37,7 +37,7 @@ export class CreateEvent extends Component {
 
         let config = {
             method: "post",
-            baseURL: "http://localhost:8000",
+            baseURL: "http://localhost:3001",
             url: "/event",
             data: this.state.event,
         };
