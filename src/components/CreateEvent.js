@@ -67,7 +67,7 @@ export class CreateEvent extends Component {
 
                                 <h3 className="formTitle">Fill out the form below</h3>
                                 <div className='title'>
-                                    <Form.Group
+                                   <Form.Group
                                         className="mb-3"
                                         controlId="exampleForm.ControlInput1"
                                     >
@@ -217,7 +217,7 @@ export class CreateEvent extends Component {
                             </div>
                         </div>
                         </div>
-            
+           
 
 
         );
