@@ -6,6 +6,10 @@ import { withAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Profiled from './Profiled.css'
+import Vector from '../components/Images/Vector 3.png';
+import Vector2 from '../components/Images/Vector 4.png';
+import vector5 from '../components/Images/Vector 5.png';
+
 export class Profile extends Component {
   constructor() {
     super();
@@ -52,6 +56,11 @@ export class Profile extends Component {
   render() {
     return (
       <div>
+        <div>
+        <img className='vector1' src={Vector} alt='' />
+        <img className='vector2' src={Vector2} alt='' />
+        <img className='vector7' src={vector5} alt='' />
+        </div>
         {this.props.auth0.isAuthenticated ?
           <>
             <div class="container">
@@ -67,34 +76,34 @@ export class Profile extends Component {
             </div>
 
 
-           
-                <div>
-                  <p className='col'>MY Events</p>
-                </div>
-                  <div className='link'>
-                    <Link to="/favorites">Favorites</Link> 
-                    <Link to="/Created">Created</Link> 
-                    <Link to="/Attending">Attending</Link>
-                  </div>
-                <div style={{ border: "red" }}>
-                  <Router className="u-app-route">
-                    <Switch>
-                      <Route exact path="/favorites">
-                        <h2>hello world</h2>
-                      </Route>
 
-                      <Route exact path="/Created">
-                        <Profile />
-                      </Route>
+            <div>
+              <p className='col'>MY Events</p>
+            </div>
+            <div className='link'>
+              <Link to="/favorites">Favorites</Link>
+              <Link to="/Created">Created</Link>
+              <Link to="/Attending">Attending</Link>
+            </div>
+            <div style={{ border: "red" }}>
+              <Router className="u-app-route">
+                <Switch>
+                  <Route exact path="/favorites">
+                    <h2>hello world</h2>
+                  </Route>
 
-                      <Route exact path="/Attending">
-                        <Button />
-                      </Route>
-                    </Switch>
-                    {/* <Footer/> */}
-                  </Router>
-                </div>
-            
+                  <Route exact path="/Created">
+                    <Profile />
+                  </Route>
+
+                  <Route exact path="/Attending">
+                    <Button />
+                  </Route>
+                </Switch>
+                {/* <Footer/> */}
+              </Router>
+            </div>
+
 
           </> : undefined}
       </div>
