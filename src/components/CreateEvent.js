@@ -52,16 +52,10 @@ export class CreateEvent extends Component {
     };
     render() {
         return (
-            <div className="cont" >
-                <div className="createEvContainer" >
-                    <Container id="container" >
+            
+                <div className='ali'>
                         <h2>Next, we just need a few more details</h2>
                         <div className="formDiv">
-                            <div className="mapClass">
-
-
-                            </div>
-                            
                             <h1 style={{ color: "white" }}>.</h1>
 
                             <Form
@@ -70,85 +64,85 @@ export class CreateEvent extends Component {
                                 }}
                             >
 
-                                <Row>
+
                                 <h3 className="formTitle">Fill out the form below</h3>
-                                    <Col>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="exampleForm.ControlInput1"
-                                        >
+                                <div className='title'>
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="exampleForm.ControlInput1"
+                                    >
 
-                                            <Form.Label>Title</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                placeholder="Event Title"
-                                                required
-                                                onChange={(e) =>
-                                                    this.setState({
-                                                        event: { ...this.state.event, title: e.target.value },
-                                                    })
-                                                }
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col>
-                                        <Form.Group
-                                            className="mb-3"
-                                            controlId="exampleForm.ControlTextarea1"
-                                        >
-                                            <Form.Label>Details</Form.Label>
-                                            <Form.Control
-                                                as="textarea"
-                                                rows={3}
-                                                onChange={(e) =>
-                                                    this.setState({
-                                                        event: {
-                                                            ...this.state.event,
-                                                            description: e.target.value,
-                                                        },
-                                                    })
-                                                }
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                </Row>
-                            </Form>
-
-                            <Row>
-                                <Col>
-
-
-                                    <Form.Label>Address</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Enter the address"
-                                        value={
-                                            "Lat: " +
-                                            this.state.event.address.lng +
-                                            "       " +
-                                            "Lng: " +
-                                            this.state.event.address.lat
-                                        }
-                                    />
-
-                                </Col><Col>
-                                    <Form.Group className="position-relative mb-3">
-                                        <Form.Label>Upload banner</Form.Label>
-                                        <Form.Control
-                                            type="file"
+                                        <Form.Label>Title</Form.Label>
+                                        <Form.Control className='titleI'
+                                            type="text"
+                                            placeholder="Event Title"
                                             required
-                                            name="img"
-                                            accept="image/png, image/jpeg"
                                             onChange={(e) =>
                                                 this.setState({
-                                                    event: { ...this.state.event, picture: e.target.value },
+                                                    event: { ...this.state.event, title: e.target.value },
                                                 })
                                             }
                                         />
-                                        <img src={this.state.picture} alt="" />
                                     </Form.Group>
-                                </Col>
-                            </Row>
+                                
+                                
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="exampleForm.ControlTextarea1"
+                                    >
+                                        <Form.Label>Details</Form.Label>
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={3}
+                                            onChange={(e) =>
+                                                this.setState({
+                                                    event: {
+                                                        ...this.state.event,
+                                                        description: e.target.value,
+                                                    },
+                                                })
+                                            }
+                                        />
+                                    </Form.Group>
+                                </div>
+
+                            </Form>
+
+
+
+
+                            <div>
+                                <Form.Label>Address</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter the address"
+                                    value={
+                                        "Lat: " +
+                                        this.state.event.address.lng +
+                                        "       " +
+                                        "Lng: " +
+                                        this.state.event.address.lat
+                                    }
+                                />
+                            </div>
+                            <div>
+                                <Form.Group className="position-relative mb-3">
+                                    <Form.Label>Upload banner</Form.Label>
+                                    <Form.Control
+                                        type="file"
+                                        required
+                                        name="img"
+                                        accept="image/png, image/jpeg"
+                                        onChange={(e) =>
+                                            this.setState({
+                                                event: { ...this.state.event, picture: e.target.value },
+                                            })
+                                        }
+                                    />
+                                    <img src={this.state.picture} alt="" />
+                                </Form.Group>
+                            </div>
+
                             <input
                                 type="time"
                                 id="appt"
@@ -215,15 +209,15 @@ export class CreateEvent extends Component {
                                     />
                                 </div>
                             ))}
-                             <h6>Pick the location</h6>
+                            <h6>Pick the location</h6>
                             <Map lngLat={this.lngLat} />
-
-                            <Button className="btn" as="input" type="submit" value="Save" />{" "}
-                            <Button as="input" type="submit" value="Cancel" />{" "}
+                            <div className='buttonD'>
+                                <Button className="btn" as="input" type="submit" value="Save" />{" "}
+                                <Button as="input" type="submit" value="Cancel" />{" "}
+                            </div>
                         </div>
-                    </Container>
-                </div>
-            </div >
+                        </div>
+            
 
 
         );
