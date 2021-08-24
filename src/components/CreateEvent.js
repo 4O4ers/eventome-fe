@@ -57,6 +57,7 @@ export class CreateEvent extends Component {
                 <div className="formDiv">
                     <h1 style={{ color: "white" }}>.</h1>
 
+
                     <Form
                         onSubmit={(e) => {
                             this.creatEvent(e);
@@ -73,6 +74,57 @@ export class CreateEvent extends Component {
 
                                 <Form.Label>Title</Form.Label>
                                 <Form.Control className='titleI'
+
+                                <h3 className="formTitle">Fill out the form below</h3>
+                                <div className='title'>
+                                   <Form.Group
+                                        className="mb-3"
+                                        controlId="exampleForm.ControlInput1"
+                                    >
+
+                                        <Form.Label>Title</Form.Label>
+                                        <Form.Control className='titleI'
+                                            type="text"
+                                            placeholder="Event Title"
+                                            required
+                                            onChange={(e) =>
+                                                this.setState({
+                                                    event: { ...this.state.event, title: e.target.value },
+                                                })
+                                            }
+                                        />
+                                    </Form.Group>
+                                
+                                
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="exampleForm.ControlTextarea1"
+                                    >
+                                        <Form.Label>Details</Form.Label>
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={3}
+                                            onChange={(e) =>
+                                                this.setState({
+                                                    event: {
+                                                        ...this.state.event,
+                                                        description: e.target.value,
+                                                    },
+                                                })
+                                            }
+                                        />
+                                    </Form.Group>
+                                </div>
+
+                            </Form>
+
+
+
+
+                            <div>
+                                <Form.Label>Address</Form.Label>
+                                <Form.Control
+
                                     type="text"
                                     placeholder="Event Title"
                                     required
@@ -104,6 +156,7 @@ export class CreateEvent extends Component {
                                 />
                             </Form.Group>
                         </div>
+
 
                     </Form>
 

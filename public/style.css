@@ -185,6 +185,8 @@ right: 0;
     margin: auto;
     
     
+    
+    
   }
 
   .createEvContainer h2{
@@ -203,7 +205,7 @@ right: 0;
   
     padding-bottom: 30px;
     text-align: center;
-    color: blue;
+    color: white;
     
     
   }
@@ -212,19 +214,31 @@ right: 0;
 
 
 .formDiv{
-  background-color: rgba(167, 165, 165, 0.979);
+  background-color: rgb(56, 55, 55);
   text-align: center;
   margin-bottom: 100px;
   border-radius: 30px;
   width: 800px;
   margin: auto;
+  box-shadow: -30px 30px 20px rgba(0,0,0,0.3);
 }
+
+
 
 
 .ali {
   text-align: center;
+  background-color: rgba(240, 207, 214, 0.979);
+  
+  
+  
+  
 }
 
+.ali h2{
+  padding: 50px;
+  
+}
     
 
 
@@ -236,35 +250,42 @@ right: 0;
   margin: auto;
   padding: 10px;
   margin-bottom: 20px;
-  background-color: #DCDCDC;
+  background-color:white;
   border-radius: 8px;
   
   
   
+  
+  
 }
 
+h6{
+  color: white;
+}
 
 
 
 @keyframes moving {
-  from{left: 0px;}
-  to{right: 300px;}
+  from{top: 0px;}
+  to{bottom: 300px;}
 }
- .formDiv label{
-  text-align: left;
+.formDiv label{
+  text-align:left;
+  color:white ;
  
 }
 .formDiv textarea{
   height: 30px;
+  
 }
 
 .formDiv .btn{
-  background-color:grey;
+  background-color: rgba(240, 207, 214, 0.979);
   font-weight: bold;
-  color: white;
+  color:rgb(56, 55, 55) ;
   width: 200px;
   margin-left: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   
 }
 
@@ -272,6 +293,7 @@ right: 0;
  padding-top: 20px;
   width: 50%;
   margin: auto;
+  
 
   
 }
@@ -282,7 +304,7 @@ right: 0;
   top: 10px;
   left: 10px;
   padding:10px;
-  margin-left: 10px;
+  margin-left: 20px;
   width: 50px;
   
 }
