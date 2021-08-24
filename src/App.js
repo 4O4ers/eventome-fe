@@ -24,11 +24,20 @@ class App extends Component {
     this.state = {
       showButton: false,
       showNav: false,
+      currentUser: {},
+      cardInfo: {},
     }
   }
 
   showNav = () => {
     this.setState({ showNav: !this.state.showNav });
+  }
+  setCurrentUser = (obj) => {
+    this.setState( { currentUser : obj});
+    
+  }
+  getCardInfo = (obj) => {
+    this.setState({cardInfo: obj});
   }
   render() {
 
@@ -39,14 +48,15 @@ class App extends Component {
         <Header showNav={this.showNav} />
         {this.state.showNav ? <Nav showNav={this.showNav} /> : undefined}
         <div style={{ minHeight: '80vh'}}>
+         {false ? <CreateEvent/> :undefined}
         <Switch >
           
           <Route exact path='/'>
-            <Home />
+            <Home getCardInfo={this.getCardInfo}/>
           </Route>
 
           <Route exact path='/profile'>
-            <Profile />
+            <Profile setCurrentUser={this.setCurrentUser}/>
           </Route>
 
           <Route exact path='/about us'>
@@ -57,10 +67,10 @@ class App extends Component {
             <CreateEvent />
           </Route>
 
-          <Route exact path='/EventDetails'>
-            <EventDetails />
+          <Route exact path='/details'>
+            <EventDetails cardInfo={this.state.cardInfo}/>
           </Route>
-          
+        
         </Switch>
         </div>
         <Footer/>

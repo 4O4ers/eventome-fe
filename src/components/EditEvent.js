@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-
+import axios from 'axios';
+import {Form, Container, Col, Row, Button} from 'react-bootstrap';
+import Map from './Map';
 export class EditEvent extends Component {
   constructor(props){
     super(props);
@@ -21,7 +23,7 @@ export class EditEvent extends Component {
     }
   }
 }
-  editEvent=()=>{
+  editEvent=(e)=>{
     
       e.preventDefault();
 

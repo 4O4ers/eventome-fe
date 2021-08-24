@@ -16,14 +16,41 @@ export class Profile extends Component {
     this.state = {
       showFavoret: false,
       data: [],
-      events: [],
+      currentUser: {},
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    let config = {
+      method: "get",
+      baseURL: `http://localhost:3001`,
+      url: `/user`,
+    };
+    axios(config).then(res => {
+      if ((res.data.filter(itm => itm.email === this.props.auth0.user.email)).length !== 0 && res.data.filter(itm => itm.email === this.props.auth0.user.email)[0] !== this.state.currentUser) {
+        this.setState({ currentUser: res.data.filter(itm => itm.email === this.props.auth0.user.email)[0] });
+
+      } else {
+        let { name, email, picture } = this.props.auth0.user;
+        let config = {
+          method: "post",
+          baseURL: `http://localhost:3001`,
+          url: `/user`,
+          data: { name, email, picture },
+        };
+        axios(config).then(res => {
+          this.setState({ currentUser: res.data.filter(itm => itm.email === this.props.auth0.user.email)[0] });
+
+        })
+      }
+      this.props.setCurrentUser(this.state.currentUser);
+    })
+    //console.log(this.state.currentUser);
+  }
+
   getFavoret = () => {
     let config = {
       method: "get",
-      baseURL: `http://localhost:8000`,
+      baseURL: `http://localhost:3001`,
       url: `/event`,
       data: this.state.data,
     };
@@ -35,14 +62,13 @@ export class Profile extends Component {
           })
           .map(({ _id }) => _id)
           .join("^");
-        console.log(newArr);
 
         this.setState({
           events: result.data,
           showFavoret: true,
         });
-        this.state.events.map(ele=>{console.log(ele.title)})
-         
+        this.state.events.map(ele =>  console.log(ele.title) )
+
       })
       .catch((err) =>
         console.log("errrrrrrrrrrrrrrrrrrrrroooooooooooooooooooorrrrrrrrrrr")
@@ -104,17 +130,18 @@ export class Profile extends Component {
               <Button>Attending</Button>
             </div>
             <div>
-              {this.state.showFavoret && <>{this.state.events.map(ele=>{
-              return(<Card>
-                    <Card.Body>
-                      <Card.Img alt="no image yet" />
-                      <Card.Title>{ele.title}</Card.Title>
-                      <Card.Text></Card.Text>
-                    </Card.Body>
-                  </Card>)})}</>
-                
-                  
-                
+              {this.state.showFavoret && <>{this.state.events.map(ele => {
+                return (<Card>
+                  <Card.Body>
+                    <Card.Img alt="no image yet" />
+                    <Card.Title>{ele.title}</Card.Title>
+                    <Card.Text></Card.Text>
+                  </Card.Body>
+                </Card>)
+              })}</>
+
+
+
               }
             </div>
           </>
