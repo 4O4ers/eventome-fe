@@ -5,7 +5,45 @@ import { Button } from 'react-bootstrap';
 import Vector from '../components/Images/Vector 3.png';
 import Vector2 from '../components/Images/Vector 4.png';
 import vector5 from '../components/Images/Vector 5.png';
+import axios from 'axios';
 class EventDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: this.props.cardInfo,
+        }
+    }
+
+handleAttendance = () => {
+    let config = {
+        method: "put",
+        baseURL: `http://localhost:3001`,
+        url: `/event/attending/${this.props.cardInfo._id}`,
+        data: { attending: this.props.auth0.user.email }
+      };
+
+      axios(config).then((result) => {
+        this.setState({
+          events: result.data,
+        });
+  
+      }).then(res => {
+        let config = {
+            method: "put",
+            baseURL: `http://localhost:3001`,
+            url: `/user/attending/${this.props.auth0.user.email}`,
+            data: { attending: this.state.data._id }
+          };
+    
+          axios(config).then((result) => {
+            console.log(result.data);
+            this.setState({
+              events: result.data,
+            });
+           
+          })
+      })
+  }
     render() {
         return (
             <>
@@ -15,16 +53,16 @@ class EventDetails extends Component {
                 <div className="con">
                     <div>
                         <div className='eventGt'>
-                            <h2>Event Title</h2>
+                            <h2>{this.props.cardInfo.title}</h2>
                         </div>
                         <div className='eventGi'>
-                            <img src="https://img.freepik.com/free-photo/party-background-with-decorative-items_23-2147628485.jpg?size=626&ext=jpg&ga=GA1.2.901275435.1618704000" />
-                            <h4>Deatails</h4>
-                            <p>allalalal</p>
+                            <img src="https://img.freepik.com/free-photo/party-background-with-decorative-items_23-2147628485.jpg?size=626&ext=jpg&ga=GA1.2.901275435.1618704000" alt='' />
+                            <h4>Description</h4>
+                            <p>{this.props.cardInfo.description}</p>
                         </div>
                     </div>
                     <div>
-                    <Button className='attend' variant="primary">Attend</Button>{' '}
+                    <Button className='attend' variant="primary" onClick={() => this.handleAttendance()}>Attend</Button>{' '}
                     </div>
 
                     {/* <div className="rplay">
