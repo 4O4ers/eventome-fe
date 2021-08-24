@@ -18,11 +18,11 @@ class Header extends Component {
             <Navbar variant="dark" style={{zIndex: '2',background:'#373636'}} >
                 <Container className='ml-5 mr-5'>
                     <Col align='start' xl='5'>
-                        <Link to='/' style={{ textDecoration: 'none', color: 'white' }}><Navbar.Brand style={{fontSize: '1.5rem'}}>Eventome</Navbar.Brand></Link>
+                        <Link to='/' style={{ textDecoration: 'none', color: 'white' }}><Navbar.Brand style={{fontSize: '1.5rem'}}>Event<span style={{color: '#ff5e14'}}>ome</span></Navbar.Brand></Link>
 
                     </Col>
                     <div>
-                            <img src="https://img.icons8.com/ios-glyphs/30/ffffff/chevron-down.png" alt=''
+                            <img className='dd' src="https://img.icons8.com/ios-glyphs/30/ffffff/chevron-down.png" alt=''
                             onClick={this.props.showNav} style={{cursor: 'pointer'}}/>
                         </div>
                     <Col xl='5' style={{  display: 'flex', gap: '10%', justifyContent: 'flex-end' }}>

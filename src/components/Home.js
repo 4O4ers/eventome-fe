@@ -144,7 +144,7 @@ class Home extends Component {
 
             <div className='cardsHolder'>
          {this.state.events ? this.state.events.map((itm, i) => {
-             return (<AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} />);
+             return (<AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={false}cr={false}/>);
           }) : undefined} 
           </div>
         </Container>

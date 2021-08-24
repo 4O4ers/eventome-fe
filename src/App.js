@@ -26,9 +26,12 @@ class App extends Component {
       showNav: false,
       currentUser: {},
       cardInfo: {},
+      data: [],
     }
   }
-
+  updateAfterUpdate = (data) => {
+    this.setState({data: data});
+  }
   showNav = () => {
     this.setState({ showNav: !this.state.showNav });
   }
@@ -56,7 +59,7 @@ class App extends Component {
           </Route>
 
           <Route exact path='/profile'>
-            <Profile setCurrentUser={this.setCurrentUser}/>
+            <Profile data={this.state.data} updateAfterUpdate={this.updateAfterUpdate} setCurrentUser={this.setCurrentUser}/>
           </Route>
 
           <Route exact path='/about us'>
