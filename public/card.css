@@ -1,8 +1,6 @@
 .ccc {
   /* background: url("https://images.unsplash.com/photo-1574007557239-acf6863bc375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"); */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+ 
   width: 350px;
   height: 500px;
   position: relative;
@@ -67,5 +65,5 @@
   display: flex;
   flex-wrap: wrap;
   gap: 7.5rem;
-  justify-content: flex-start;
+  justify-content: space-evenly;
 }

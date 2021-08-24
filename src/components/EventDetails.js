@@ -14,84 +14,97 @@ class EventDetails extends Component {
         }
     }
 
-handleAttendance = () => {
-    let config = {
-        method: "put",
-        baseURL: `http://localhost:3001`,
-        url: `/event/attending/${this.props.cardInfo._id}`,
-        data: { attending: this.props.auth0.user.email }
-      };
-
-      axios(config).then((result) => {
-        this.setState({
-          events: result.data,
-        });
-  
-      }).then(res => {
+    handleAttendance = () => {
         let config = {
             method: "put",
             baseURL: `http://localhost:3001`,
-            url: `/user/attending/${this.props.auth0.user.email}`,
-            data: { attending: this.state.data._id }
-          };
-    
-          axios(config).then((result) => {
-            console.log(result.data);
+            url: `/event/attending/${this.props.cardInfo._id}`,
+            data: { attending: this.props.auth0.user.email }
+        };
+
+        axios(config).then((result) => {
             this.setState({
-              events: result.data,
+                events: result.data,
             });
-           
-          })
-      })
-  }
+
+        }).then(res => {
+            let config = {
+                method: "put",
+                baseURL: `http://localhost:3001`,
+                url: `/user/attending/${this.props.auth0.user.email}`,
+                data: { attending: this.state.data._id }
+            };
+
+            axios(config).then((result) => {
+                console.log(result.data);
+                this.setState({
+                    events: result.data,
+                });
+
+            })
+        })
+    }
     render() {
         return (
-            <>
-            <img className='vector1' src={Vector} alt='' />
-        <img className='vector2' src={Vector2} alt='' />
-        <img className='vector7' src={vector5} alt='' />
-                <div className="con">
-                    <div>
-                        <div className='eventGt'>
-                            <h2>{this.props.cardInfo.title}</h2>
-                        </div>
-                        <div className='eventGi'>
-                            <img src="https://img.freepik.com/free-photo/party-background-with-decorative-items_23-2147628485.jpg?size=626&ext=jpg&ga=GA1.2.901275435.1618704000" alt='' />
-                            <h4>Description</h4>
-                            <p>{this.props.cardInfo.description}</p>
-                        </div>
-                    </div>
-                    <div>
-                    <Button className='attend' variant="primary" onClick={() => this.handleAttendance()}>Attend</Button>{' '}
-                    </div>
+            <div>
 
-                    {/* <div className="rplay">
-                        <h2>Comments</h2>
+                <img className="vector1" src={Vector} alt="" />
 
-                        <div className="">
-                            <div className="replay1">
-                                <img src="http://assets.stickpng.com/thumbs/585e4beacb11b227491c3399.png" />
-                                <p>kjghksgekegkenke tk jeskfek kfjekfjewitj3wir</p>
-                                <button>reply</button>
+
+
+
+                <div class="container bootdey" style={{ marginTop: "3rem", display: "flex", justifyContent: "center" }}>
+                    <div class="col-md-10">
+                        <section class="panel">
+                            <div class="panel-body" style={{ display: "flex", gap: "3rem", flexWrap: 'wrap' }}>
+                                <div class="col-md-6">
+                                    <div class="pro-img-details">
+                                        <img
+                                            src="https://via.placeholder.com/550x380/FFB6C1/000000"
+                                            alt=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <h4 class="pro-d-title">
+                                        <span class="">Title: {this.props.cardInfo.title}</span>
+                                    </h4>
+                                    <p>
+                                        <strong>description :</strong>
+                                        {this.props.cardInfo.description}
+                                        Praesent ac condimentum felis. Nulla at nisl orci, at
+                                        dignissim dolor, The best product descriptions address your
+                                        ideal buyer directly and personally. The best product
+                                        descriptions address your ideal buyer directly and
+                                        personally.
+                                    </p>
+                                    <div class="product_meta">
+                                        <span class="posted_in">
+                                            {" "}
+                                            <strong>Categories:</strong> {this.props.cardInfo.title}
+                                        </span>
+                                    </div>
+
+                                    <p>
+                                        <Button
+                                            className="attend"
+                                            variant="primary"
+                                            onClick={() => this.handleAttendance()}
+                                        >
+                                            Attend
+                                        </Button>
+                                    </p>
+                                </div>
                             </div>
-
-                            <div className="replay1">
-                                <img src="http://assets.stickpng.com/thumbs/585e4beacb11b227491c3399.png" />
-                                <p>kjghksgekegkenke tk jeskfek kfjekfjewitj3wir</p>
-                                <button>reply</button>
-                            </div>
-
-                        </div>
-
-                    </div> */}
-
+                        </section>
+                    </div>
+                </div>
             </div>
-            </>
 
 
 
-                )
+        )
     }
 }
 
-                export default withAuth0(EventDetails)
+export default withAuth0(EventDetails)

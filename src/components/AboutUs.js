@@ -137,7 +137,9 @@ export class About extends Component {
                         <Form.Label>Message</Form.Label>
                         <Form.Control as="textarea" rows={3} />
                     </Form.Group>
-                    <Button variant="outline-dark">Send</Button>
+                    <div className='btn-send'>
+                    <button className='btn btn-primary m-0 p-0 ' style={{width: '150px', height: '50px'}}>Send</button>
+                    </div>
                 </div>
             </div>
         )

@@ -16,15 +16,55 @@ export class AboutCard extends Component {
       opacity: 0,
       showRating: false,
       hideRating: false,
-      id: '',
+      id: this.props.id,
       favorites: [],
       userFavorites: [],
+      events: [],
+      inProfile: false,
+      cr : false,
     }
   }
   componentDidMount() {
-    this.setState({ data: this.props.ownData, id: this.props.id });
-
+    //console.log(this.props.inProfile);
+    this.setState({ data: this.props.ownData, id: this.props.id, inProfile: this.props.inProfile });
   }
+
+  deleteEvent =   (e) => {
+    //console.log(e);
+    let config = {
+      method: "delete",
+      baseURL: `http://localhost:3001`,
+      url: `/event/${this.state.id}`,
+    };
+    //console.log(this.state.id);
+    axios(config).then((result) => {
+      this.setState({
+        events: result.data,
+      });
+      console.log(result.data);
+      this.props.renderAfterDelete(result.data);
+    })
+  }
+
+  updateEvent = (e) => { //////////////////////////////////////////////////////////////////////////////////////////////
+    //console.log(this.state.data);
+
+    //this.props.id
+    // let config = {
+    //   method: "get",
+    //   baseURL: `http://localhost:3001`,
+    //   url: `/event/one/${this.props.id}`,
+    // };
+    // axios(config).then((result) => {
+    //   //console.log(result)
+    //   this.setState({
+    //     events: result.data,
+    //   });
+
+    // })
+    this.props.showUpdateModal(this.state.data);
+  }
+
 
   handleHeart = async (e) => {
     this.setState({ favorite: !this.state.favorite });
@@ -56,11 +96,11 @@ export class AboutCard extends Component {
           data: { favorites: [e.target.dataset.idd] }
         };
         axios(config).then((result) => {
-          console.log(result)
+          //console.log(result)
           this.setState({
             events: result.data,
           });
-
+          //console.log(this.state.events);
         }).catch((err) => console.log(err));
       }).catch((err) => console.log(err));
   }
@@ -72,8 +112,6 @@ export class AboutCard extends Component {
     await this.setState({ rating: val });
     await this.setState({ showRating: false });
     let ratings = { email: this.props.auth0.user.email, rating: val };
-    console.log(ratings)
-    await this.setState({ data: { ...this.state.data, ratings } })
     let config = {
       method: "put",
       baseURL: `http://localhost:3001`,
@@ -85,17 +123,19 @@ export class AboutCard extends Component {
       this.setState({
         events: result.data,
       });
-      console.log(result.data);
+      //console.log(result.data);
+    }).then(res => {
+      this.setState({ data: this.state.events.filter(itm => itm._id === this.state.id)[0] })
     }).catch((err) => console.log(err));
   }
   render() {
     return (
-      <>
-        <div style={{ borderRadius: '20px', overflow: 'hidden'}}>
+      <> {this.props.auth0.isAuthenticated ? 
+        <div style={{ borderRadius: '20px' }}>
 
-          <div class="ccc" style={{ background: 'url(https://picsum.photos/400/600)' }}>
+          <div class="ccc" style={{ background: `url(${this.state.data.picture})` , backgroundSize: '100%'}}>
             <span className='sss'>
-              <img src={!this.state.favorite ? 'https://img.icons8.com/ios-glyphs/30/ff0000/like--v2.png' : "https://img.icons8.com/ios-glyphs/30/ff0000/like.png"} alt='' data-idd={this.state.data._id} onClick={this.handleHeart} style={{marginRight: '0.5rem'}} />
+              <img src={!this.state.favorite ? 'https://img.icons8.com/ios-glyphs/30/ff0000/like--v2.png' : "https://img.icons8.com/ios-glyphs/30/ff0000/like.png"} alt='' data-idd={this.state.data._id} onClick={this.handleHeart} style={{ marginRight: '0.5rem' }} />
 
               <img src={!this.state.rate ? "https://img.icons8.com/ios-glyphs/30/ffff00/star--v2.png" : `https://img.icons8.com/ios-glyphs/30/ffff00/star.png`} alt='' onClick={() => { this.setState({ rate: !this.state.rate }); this.setState({ showRating: !this.state.showRating }) }} />
             </span>
@@ -103,19 +143,26 @@ export class AboutCard extends Component {
               <span><img src="https://img.icons8.com/ios-glyphs/20/ffffff/user-male--v1.png" alt='' />
                 {this.state.data.attending.length}</span>
               <span><img src="https://img.icons8.com/ios-glyphs/20/ffffff/star--v1.png" alt='' />
-                {this.state.data.ratings.map(itm => itm.rating).reduce((tot, itm) => tot + itm, 0) / this.state.data.ratings.length || "0"}</span>
+                {(this.state.data.ratings.map(itm => itm.rating).reduce((tot, itm) => tot + itm, 0) / this.state.data.ratings.length).toFixed(2) || "0"}</span>
             </div>
-            <div class="ccc_profile">
-              <div class="ccc_profile__text">
+            <div class="ccc_profile" style={{ display: 'felx', flexDirection: 'column' }} >
+              <div class="ccc_profile__text" style={{ width: '320px' }}>
                 <h2>{this.state.data.title}</h2>
                 <p>{this.state.data.description}</p>
               </div>
-            </div>
-            <Link to='/details'>
-              <Button style={{ position: 'absolute', bottom: '0px', left: '220px', float: 'right' }} onClick={() => this.props.getCardInfo(this.state.data)}>Details</Button>
-            </Link>
+              <div style={{ display: 'flex', gap: '3rem', width: '320px', justifyContent: 'center' }}>
+                {!this.props.inProfile || !this.props.cr ? <Link to='/details'>
+                  <Button onClick={() => this.props.getCardInfo(this.state.data)}>Details</Button>
+                </Link> : undefined}
 
-            {this.state.showRating ? (<div style={{ position: 'absolute', left: '-75px', top: '-80px', zIndex: '2' }}>
+                {this.props.cr && this.props.inProfile ? <Button onClick={(e) => this.deleteEvent(e)}>Delete</Button> : undefined}
+                {this.props.cr && this.props.inProfile? <Button onClick={(e) => this.updateEvent(e)} >Update</Button> : undefined}
+              </div>
+
+            </div>
+
+
+            {this.state.showRating ? (<div style={{ position: 'absolute', left: '-55px', top: '-80px', zIndex: '2' }}>
               <div style={{ width: '250px', height: '60px', background: 'red', position: 'relative', borderRadius: '10px' }} className='bg-dark'>
                 <select id="dropdown-basic-button" title="Dropdown button" style={{ zIndex: '1', position: 'absolute', width: '240px', top: '5px', left: '4.5px', height: '50px', color: 'white', border: 'none', outline: 'none' }} className='bg-dark' onChange={(e) => this.getRating(e.target.value)}>
                   <option >1</option>
@@ -135,7 +182,7 @@ export class AboutCard extends Component {
             </div>) :
               undefined}
           </div>
-        </div>
+        </div> : undefined }
       </>
     );
   }
