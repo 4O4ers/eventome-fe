@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Volkhov:ital,wght@1,700&display=swap');
 .first {
     background-color: aqua;
 }
@@ -197,4 +198,52 @@ ul {
 
 .rplay {
   margin: 20px
+}
+.v {
+  margin-top: 20px;
+}
+
+.h {
+  height: 110vh;
+}
+.try {
+  position: absolute;
+  top: 142px;
+  left: 57%;
+  z-index: 1;
+}
+.try1 {
+  position: absolute;
+  top: 70px;
+  left: 815px;
+  z-index: -1;
+}
+.try2 {
+  position: absolute;
+  top: 290px;
+  left: 790px;
+  z-index: 2;
+}
+.place{
+  position: absolute;
+  top: 370px;
+  left: 150px;
+  font-size: 29px;
+  font-family: 'Volkhov', serif; 
+   color: #151414;
+   line-height: 1.8;
+}
+.place h1 {
+  font-size: 60px;
+}
+h1 span:nth-child(1) {
+  color: #000;
+  color: white;
+  background-color: #000;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+.place span {
+  color: #ff5e14;
+  text-transform: uppercase;
 }
