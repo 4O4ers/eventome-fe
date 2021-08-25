@@ -44,7 +44,7 @@ class Footer extends Component {
                                     <div className="col-xl-4 col-lg-4 mb-50">
                                         <div className="footer-widget">
                                             <div className="footer-logo">
-                                                <a href="index.html"><img src="https://i.ibb.co/QDy827D/ak-logo.png" className="img-fluid" alt="logo" /></a>
+                                                <h2 style={{color: 'white'}}>Event<span style={{color: 'rgb(255, 94, 20)'}}>ome</span></h2>
                                             </div>
                                             <div className="footer-text">
                                                 <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing

@@ -32,8 +32,8 @@ export class Map extends Component {
       }
   render() {
     return (
-      <div>
-        <div ref={this.mapContainer} className="map-container" />
+      <div >
+        <div style={{borderRadius: '15px'}} ref={this.mapContainer} className="map-container" />
       </div>
     )
   }

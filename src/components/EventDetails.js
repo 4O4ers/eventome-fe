@@ -6,6 +6,8 @@ import Vector from '../components/Images/Vector 3.png';
 import Vector2 from '../components/Images/Vector 4.png';
 import vector5 from '../components/Images/Vector 5.png';
 import axios from 'axios';
+import swal from 'sweetalert';
+
 class EventDetails extends Component {
     constructor(props) {
         super(props);
@@ -40,7 +42,11 @@ class EventDetails extends Component {
                 this.setState({
                     events: result.data,
                 });
-
+                swal({
+                    title: "You are in!",
+                    text: "This event has been added to your list of events to be attended.",
+                    icon: "success",
+                  });
             })
         })
     }
@@ -58,19 +64,19 @@ class EventDetails extends Component {
                         <section class="panel">
                             <div class="panel-body" style={{ display: "flex", gap: "3rem", flexWrap: 'wrap' }}>
                                 <div class="col-md-6">
-                                    <div class="pro-img-details">
+                                    <div class="pro-img-details" style={{borderRadius: '15px', overflow: 'hidden'}}>
                                         <img
-                                            src="https://via.placeholder.com/550x380/FFB6C1/000000"
+                                            src={this.props.cardInfo.picture}
                                             alt=""
                                         />
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <h4 class="pro-d-title">
-                                        <span class="">Title: {this.props.cardInfo.title}</span>
+                                        <span class="">{this.props.cardInfo.title}</span>
                                     </h4>
                                     <p>
-                                        <strong>description :</strong>
+                                        <strong></strong>
                                         {this.props.cardInfo.description}
                                         Praesent ac condimentum felis. Nulla at nisl orci, at
                                         dignissim dolor, The best product descriptions address your
@@ -78,12 +84,12 @@ class EventDetails extends Component {
                                         descriptions address your ideal buyer directly and
                                         personally.
                                     </p>
-                                    <div class="product_meta">
+                                    {/* <div class="product_meta">
                                         <span class="posted_in">
                                             {" "}
                                             <strong>Categories:</strong> {this.props.cardInfo.title}
                                         </span>
-                                    </div>
+                                    </div> */}
 
                                     <p>
                                         <Button
@@ -91,7 +97,7 @@ class EventDetails extends Component {
                                             variant="primary"
                                             onClick={() => this.handleAttendance()}
                                         >
-                                            Attend
+                                            attend
                                         </Button>
                                     </p>
                                 </div>

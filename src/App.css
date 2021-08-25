@@ -204,12 +204,12 @@ ul {
 }
 
 .h {
-  height: 110vh;
+  minHeight: 90vh;
 }
 .try {
   position: absolute;
   top: 142px;
-  left: 57%;
+  left: 870px;
   z-index: 1;
 }
 .try1 {

@@ -6,8 +6,6 @@ import '../App.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import swal from 'sweetalert';
-import Zoom from 'react-reveal/Zoom';
 export class AboutCard extends Component {
   constructor(props) {
     super(props);
@@ -24,8 +22,6 @@ export class AboutCard extends Component {
       events: [],
       inProfile: false,
       cr : false,
-
-
     }
   }
   componentDidMount() {
@@ -43,11 +39,25 @@ export class AboutCard extends Component {
         events: result.data,
       });
       this.props.renderAfterDelete(result.data);
-      swal("Event has been removed successfully.");
     })
   }
 
-  updateEvent = (e) => { 
+  updateEvent = (e) => { //////////////////////////////////////////////////////////////////////////////////////////////
+    //console.log(this.state.data);
+
+    //this.props.id
+    // let config = {
+    //   method: "get",
+    //   baseURL: `http://localhost:3001`,
+    //   url: `/event/one/${this.props.id}`,
+    // };
+    // axios(config).then((result) => {
+    //   //console.log(result)
+    //   this.setState({
+    //     events: result.data,
+    //   });
+
+    // })
     this.props.showUpdateModal(this.state.data);
   }
 
@@ -112,49 +122,42 @@ export class AboutCard extends Component {
   }
   render() {
     return (
-      
       <> {this.props.auth0.isAuthenticated ? 
-        <div className='cardDiv'>
-        <div className='contentDiv'>
-          <div className='a1'>
-            <h2>{this.state.data.title}</h2>
-          </div>
-          <div className='b1'>
-            <p>
-              {this.state.data.description}
-            </p>
-          </div>
-          <div className='btm'>
+        <div style={{ borderRadius: '20px', marginTop: '50px' }}>
 
-            <div className='d1'>
-              <span><img src={`https://img.icons8.com/ios-glyphs/24/${!this.state.favorite ? 'ffffff' : 'ff0000'}/like.png`} alt='' data-idd={this.state.data._id} onClick={this.handleHeart} /><pre>   </pre></span>
+          <div class="ccc" style={{ background: `url(${this.state.data.picture})` , backgroundSize: '100%'}}>
+            <span className='sss'>
+              <img src={!this.state.favorite ? 'https://img.icons8.com/ios-glyphs/30/ff0000/like--v2.png' : "https://img.icons8.com/ios-glyphs/30/ff0000/like.png"} alt='' data-idd={this.state.data._id} onClick={this.handleHeart} style={{ marginRight: '0.5rem' }} />
 
-              <span><img src="https://img.icons8.com/material-rounded/24/ffffff/star--v1.png" alt='' onClick={() => this.setState({ rate: !this.state.rate, showRating: !this.state.showRating })} /> {(this.state.data.ratings.map(itm => itm.rating).reduce((tot, itm) => tot + itm, 0) / this.state.data.ratings.length).toFixed(2) || "0"} </span>
-
-              <span><img src="https://img.icons8.com/ios-glyphs/24/ffffff/conference-call.png" alt=' ' />{this.state.data.attending.length}</span>
+              <img src={!this.state.rate ? "https://img.icons8.com/ios-glyphs/30/ffff00/star--v2.png" : `https://img.icons8.com/ios-glyphs/30/ffff00/star.png`} alt='' onClick={() => { this.setState({ rate: !this.state.rate }); this.setState({ showRating: !this.state.showRating }) }} />
+            </span>
+            
+            <div class="ccc_info">
+              <span><img src="https://img.icons8.com/ios-glyphs/20/ffffff/user-male--v1.png" alt='' />
+                {this.state.data.attending.length}</span>
+              <span><img src="https://img.icons8.com/ios-glyphs/20/ffffff/star--v1.png" alt='' />
+                {(this.state.data.ratings.map(itm => itm.rating).reduce((tot, itm) => tot + itm, 0) / this.state.data.ratings.length).toFixed(2) || "0"}</span>
             </div>
-            <div className='c1'>
-              {!this.props.inProfile || !this.props.cr ?
-                <Link to='/details'>
-                  <button onClick={() => this.props.getCardInfo(this.state.data)}>view details</button>
-                </Link>
-                : undefined}
-              {this.props.cr && this.props.inProfile ?
-                <button onClick={(e) => this.deleteEvent(e)}>Delete</button>
-                : undefined}
-              {this.props.cr && this.props.inProfile ?
-                <button onClick={(e) => this.updateEvent(e)} >Update</button>
-                : undefined}
-            </div>
-          </div>
-        </div>
-        <div className='imgDiv' style={{backgroundImage: `url(${this.state.data.picture})`, backgroundDize: 'cover',
-  backgroundPosition: '50% 50%'}}>
+            <div class="ccc_profile" style={{ display: 'felx', flexDirection: 'column' }} >
+              <div class="ccc_profile__text" style={{ width: '320px' }}>
+                <h2>{this.state.data.title}</h2>
+                <p>{this.state.data.description}</p>
+              </div>
+              <div style={{ display: 'flex', gap: '3rem', width: '320px', justifyContent: 'center' }}>
+                {!this.props.inProfile || !this.props.cr ? <Link to='/details'>
+                  <Button onClick={() => this.props.getCardInfo(this.state.data)}>Details</Button>
+                </Link> : undefined}
 
-        </div>
-        {this.state.showRating ? (<div style={{ position: 'absolute', left: '430px', top: '240px', zIndex: '2' }}>
-              <div style={{ width: '100px', height: '60px', background: 'red', position: 'relative', borderRadius: '10px', backgroundColor: 'white' }} className='bg-light'>
-                <select id="dropdown-basic-button" title="Dropdown button" style={{ zIndex: '1', position: 'absolute', width: '90px', top: '5px', left: '4.5px', height: '50px', color: 'black', border: 'none', outline: 'none' }} className='bg-light' onChange={(e) => this.getRating(e.target.value)}>
+                {this.props.cr && this.props.inProfile ? <Button onClick={(e) => this.deleteEvent(e)}>Delete</Button> : undefined}
+                {this.props.cr && this.props.inProfile? <Button onClick={(e) => this.updateEvent(e)} >Update</Button> : undefined}
+              </div>
+
+            </div>
+
+
+            {this.state.showRating ? (<div style={{ position: 'absolute', left: '-55px', top: '-80px', zIndex: '2' }}>
+              <div style={{ width: '250px', height: '60px', background: 'red', position: 'relative', borderRadius: '10px' }} className='bg-dark'>
+                <select id="dropdown-basic-button" title="Dropdown button" style={{ zIndex: '1', position: 'absolute', width: '240px', top: '5px', left: '4.5px', height: '50px', color: 'white', border: 'none', outline: 'none' }} className='bg-dark' onChange={(e) => this.getRating(e.target.value)}>
                   <option >1</option>
                   <option>2</option>
                   <option>3</option>
@@ -166,11 +169,12 @@ export class AboutCard extends Component {
                   <option>9</option>
                   <option>10</option>
                 </select>
-                <div style={{ background: 'red', width: '58px', height: '58px', transform: 'rotate(45deg)', position: 'absolute', top: 12, left: 'calc(50% - 30px)', zIndex: '0' }} className='bg-light'>
+                <div style={{ background: 'red', width: '58px', height: '58px', transform: 'rotate(45deg)', position: 'absolute', top: 12, left: 'calc(50% - 30px)', zIndex: '0' }} className='bg-dark'>
                 </div>
               </div>
             </div>) :
               undefined}
+          </div>
         </div> : undefined }
         
       </>
