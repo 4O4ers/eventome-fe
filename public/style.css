@@ -1,4 +1,7 @@
 
+:root {
+  --card: 60%;
+}
 .Link {
   text-decoration: none;
   color: white;
@@ -14,7 +17,7 @@
 .navClass{
   width: 100%;
   height: 50px;
-  background: gray;
+  background: #151414;
   position: absolute;
   display: flex;
   align-items: center;
@@ -222,6 +225,7 @@ right: 0;
   border-radius: 30px;
   width: 800px;
   margin: auto;
+  margin-bottom: 2rem;
   box-shadow: -30px 30px 20px rgba(0,0,0,0.3);
 }
 
@@ -230,7 +234,7 @@ right: 0;
 
 .ali {
   text-align: center;
-  background-color: rgba(240, 207, 214, 0.979);
+  background-color: white;
   
   
   
@@ -282,9 +286,9 @@ h6{
 }
 
 .formDiv .btn{
-  background-color: rgba(240, 207, 214, 0.979);
+  background-color: rgb(255, 94, 20);
   font-weight: bold;
-  color:rgb(56, 55, 55) ;
+  color:white ;
   width: 200px;
   margin-left: 30px;
   margin-bottom: 50px;
@@ -693,7 +697,8 @@ a {
 
 .pro-d-title {
   font-size: 16px;
-  margin-top: 0;
+  margin: 0;
+  padding: 1rem 0
 }
 
 .product_meta {
@@ -757,6 +762,181 @@ a {
 @keyframes grow {
   to {transform: scale(1.1);}
 }
+/* ////////////////////////////////////////////////////  */
+.cardDiv {
+width: var(--card);
+margin: auto;
+display: grid;
+min-height: 350px;
+grid-template-columns: 1fr 2fr;
+grid-template-areas: "a b";
+margin-top: 5rem;
+border-radius: 25px;
+overflow: hidden;
+color: white;
+position: relative;
+box-shadow: 10px 20px 25px black,-10px 10px 25px rgb(255, 94, 20) ;
+}  
+.imgDiv {
+  position: relative;
+  grid-area: a;
+  /* background: url(https://i.pinimg.com/originals/a4/f8/f9/a4f8f91b31d2c63a015ed34ae8c13bbd.jpg); */
+  /* background-size: contain; */
+  background-size: cover;
+  background-position: 50% 50%;
+  
+}
+.imgDiv:hover {
+  animation: bigger;
+  animation-duration: 0.25s;
+  animation-fill-mode: forwards;
+}
+@keyframes bigger {
+  10% {background-size: 100.75%;}
+  20% {background-size: 101.25%;}
+  30% {background-size: 102%;}
+  40% {background-size: 102.75%;}
+  50% {background-size: 103.5%;}
+  60% {background-size: 104.25%;}
+  70% {background-size: 105%;}
+  80% {background-size: 105.75%;}
+  90% {background-size: 106.5%;}
+  100% {background-size: 107.25%;}
+}
+.imgDiv::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left:0;
+  background:  linear-gradient(to right,rgba(155,155,155,0),65%, #151414);
+}
+.contentDiv {
+  position: relative;
+  grid-area: b;
+  background: #151414;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 1.5fr 2fr 1fr;
+  grid-template-areas: "e title"
+                        " e desc"
+                        "e buttons";
+  padding-right: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  
+}
+.contentDiv::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left:0;
+  background: linear-gradient(to left,rgba(155,155,155,0),75%, #151414);
+  z-index: 0;
+}
+.contentDiv :is(h2) {
+  color: rgb(255, 94, 20);
+  padding-top: 0.5rem;
+}
+.a1 {
+  grid-area: title;
+  z-index: 1;
+}
+.b1 {
+  grid-area: desc;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1;
+}
+.c1 {
+ 
+  z-index: 1;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.c1 button {
+  width: 7rem;
+  border-radius: 3.5rem;
+  margin-right: 1rem;
+  background: rgb(255, 94, 20);
+  color: white;
+  transition: all 0.2s ease-in 0s;
+}
+.c1 button:hover {
+  right: -7px;
+  }
+.btm {
+  grid-area: buttons;
+  display: flex;
+  z-index: 1;
+  
+}
+.btm div {
+  width: 50%;
+}
+.d1 {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.d1 span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem ;
+}
+.crcl1 , .crcl2 {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 0.75rem;
+  z-index: 1;
+}
+.crcl1 {
+  left: 3.5rem
+}
+.crcl2 {
+  left: 1rem
+}
+.c1 button {
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 2px solid rgb(255, 94, 20);
+  border-radius: 0.6em;
+  color: rgb(255, 94, 20);
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+.c1 button:hover, .c1 button:focus {
+  color: #fff;
+  outline: 0;
+}
 
-  
-  
+.c1 button {
+  border-color: rgb(255, 94, 20);
+  color: #fff;
+  box-shadow: 0 0 40px 40px rgb(255, 94, 20) inset, 0 0 0 0 rgb(255, 94, 20);
+  transition: all 150ms ease-in-out;
+}
+.c1 button:hover {
+  box-shadow: 0 0 10px 0 rgb(255, 94, 20) inset, 0 0 10px 4px rgb(255, 94, 20);
+}
+.d1 span {
+  cursor: pointer;
+}

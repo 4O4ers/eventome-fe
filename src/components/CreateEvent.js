@@ -6,6 +6,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { withAuth0 } from '@auth0/auth0-react';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import swal from 'sweetalert';
+
 export class CreateEvent extends Component {
     constructor(props) {
         super(props);
@@ -50,6 +52,12 @@ export class CreateEvent extends Component {
             this.setState({
                 events: eventData,
             });
+            swal({
+                title: "Success!",
+                text: "Event was created sucessfully!",
+                icon: "success",
+              });
+
         }).then(res => {
 
         });
@@ -58,7 +66,7 @@ export class CreateEvent extends Component {
         return (
 
             <div className='ali'>
-                <h2>Next, we just need a few more details</h2>
+                <h2 style={{color: 'white'}}>Next, we just need a few more details</h2>
                 <div className="formDiv">
                     <h1 style={{ color: "white" }}>.</h1>
 
@@ -225,7 +233,7 @@ export class CreateEvent extends Component {
                     </Form.Group>
                     <h6>Pick the location</h6>
                     <Map lngLat={this.lngLat} />
-                    <div className='buttonD'>
+                    <div className='buttonD' style={{display: 'flex', gap: '1rem', justifyContent: 'center'}}>
 
                         {/* <SweetAlert
                             success
@@ -238,8 +246,8 @@ export class CreateEvent extends Component {
                             I did it!
                         </SweetAlert> */}
 
-                        <Button className="btn" as="input" value="Save" onClick={(e) => { this.creatEvent(e); this.setState({ showConfirm: true }) }} />
-                        <Link to='/'><Button as="input" value="Cancel" /></Link>{" "}
+                        <Button className="btn btn-success text-center m-0 pr-2 mb-5" as="input" value="Save" onClick={(e) => { this.creatEvent(e); this.setState({ showConfirm: true }) }} />
+                        <Link to='/'><Button className='btn btn-danger text-center m-0 pl-2 mb-5' as="input" value="Cancel" /></Link>{" "}
                     </div>
                 </div>
 

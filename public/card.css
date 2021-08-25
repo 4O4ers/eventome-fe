@@ -63,7 +63,9 @@
 .cardsHolder {
 
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 7.5rem;
-  justify-content: space-evenly;
+  gap: 0rem;
+  align-items: center;
+  margin-top: -2rem;
 }

@@ -15,7 +15,7 @@ class Header extends Component {
     }
     render() {
         return (
-            <Navbar variant="dark" style={{zIndex: '2',background:'#373636'}} >
+            <Navbar variant="dark" style={{zIndex: '2',background:'#151414'}} >
                 <Container className='ml-5 mr-5'>
                     <Col align='start' xl='5'>
                         <Link to='/' style={{ textDecoration: 'none', color: 'white' }}><Navbar.Brand style={{fontSize: '1.5rem'}}>Event<span style={{color: '#ff5e14'}}>ome</span></Navbar.Brand></Link>
@@ -34,7 +34,7 @@ class Header extends Component {
                             </div>
                             :
                             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                <LoginButton />
+                                <LoginButton  />
                                 <div style={{ minWidth: '35px', minHeight: '35px', display: 'inline-block' }}>
                                     .
                                 </div>

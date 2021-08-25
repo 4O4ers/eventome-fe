@@ -11,6 +11,10 @@ import Vector2 from "../components/Images/Vector 4.png";
 import vector5 from "../components/Images/Vector 5.png";
 import AboutCard from "./AboutCard";
 import Map from './Map';
+import swal from 'sweetalert';
+import Zoom from 'react-reveal/Zoom';
+
+
 export class Profile extends Component {
   constructor() {
     super();
@@ -113,7 +117,7 @@ export class Profile extends Component {
     this.setState({ created: this.state.data.filter(itm => itm.creator === this.props.auth0.user.email) });
   }
   renderAfterUpdate = (data) => {
-    this.setState({data});
+    this.setState({ data });
   }
 
   showUpdateModal = (obj) => {
@@ -151,13 +155,18 @@ export class Profile extends Component {
       let created = result.data.filter(itm => itm.creator === this.props.auth0.user.email);
       //console.log(created);
       this.setState({
-        data: {...result.data,created}
+        data: { ...result.data, created }
       });
       //console.log(this.state.created)
-      
+
     }).then(res => {
-     this.props.updateAfterUpdate(this.state.created);
-     this.setState({data: this.props.data})
+      this.props.updateAfterUpdate(this.state.created);
+      this.setState({ data: this.props.data })
+      swal({
+        title: "Updated",
+        text: "Updates have been saved.",
+        icon: "success",
+      });
     }).catch(err => console.log(err));
   }
   render() {
@@ -193,26 +202,28 @@ export class Profile extends Component {
             <div style={{ textAlign: 'center', fontSize: '2rem' }}>
               MY Events
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem', gap: '1rem' }}>
-              <p style={{ cursor: 'pointer', color: `${this.state.fa ? 'blue' : 'initial'}` }} onClick={() => this.setState({ fa: true, cr: false, at: false })}>Favorites</p>
-              <p style={{ cursor: 'pointer', color: `${this.state.cr ? 'blue' : 'initial'}` }} onClick={() => this.setState({ fa: false, cr: true, at: false })}>Created</p>
-              <p style={{ cursor: 'pointer', color: `${this.state.at ? 'blue' : 'initial'}` }} onClick={() => this.setState({ fa: false, cr: false, at: true })}>Attending</p>
+            <div style={{ display: 'flex', justifyContent: 'center', margin: '1rem', gap: '1rem' }}>
+              <p style={{ cursor: 'pointer', color: `${this.state.fr ? 'blue' : 'initial'}` }} onClick={() => this.setState({ fr: true, cr: false, at: false })}>Favorites</p>
+              <p style={{ cursor: 'pointer', color: `${this.state.cr ? 'blue' : 'initial'}` }} onClick={() => this.setState({ fr: false, cr: true, at: false })}>Created</p>
+              <p style={{ cursor: 'pointer', color: `${this.state.at ? 'blue' : 'initial'}` }} onClick={() => this.setState({ fr: false, cr: false, at: true })}>Attending</p>
             </div>
-            <Container style={{ minHeight: '200px', display: 'flex', flexWrap: 'wrap', marginBottom: '5rem' }}>
-              {this.state.fa ?
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7.5rem' }}>
+            <Container style={{ minHeight: '200px', display: 'flex', flexWrap: 'wrap', marginBottom: '1rem', marginTop: '0' }}>
+              {this.state.fr ?
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                   {this.state.favorites.map((itm, i) => {
                     return (<AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={false} />);
                   })}
                 </div> : undefined}
 
-              {this.state.cr ? <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7.5rem' }}>
+              {this.state.cr ? <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 {this.state.created.map((itm, i) => {
-                  return (<AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={true} renderAfterDelete={this.renderAfterDelete} renderAfterUpdate={this.renderAfterUpdate} showUpdateModal={this.showUpdateModal} />);
+                  return (
+                  <AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={true} renderAfterDelete={this.renderAfterDelete} renderAfterUpdate={this.renderAfterUpdate} showUpdateModal={this.showUpdateModal} />
+                  );
                 })}
               </div> : undefined}
 
-              {this.state.at ? <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7.5rem' }}>
+              {this.state.at ? <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 {this.state.attending.map((itm, i) => {
                   return (<AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={false} />);
                 })}
@@ -236,12 +247,12 @@ export class Profile extends Component {
           </>
         ) : undefined}
 
-        <Modal show={this.state.shUpdate} onHide={() => this.setState({ shUpdate: false })} centered>
-          <Modal.Header closeButton>
+        <Modal show={this.state.shUpdate} onHide={() => this.setState({ shUpdate: false })} centered >
+          <Modal.Header >
             <Modal.Title>Update Event Details</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form>
+            <Form >
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" defaultValue={this.state.receivedForUpdate.title} onChange={this.titleUpdate} />
@@ -276,6 +287,7 @@ export class Profile extends Component {
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Time</Form.Label>
                 <input
+                  style={{ width: '100%' }}
                   type="time"
                   id="appt"
                   name="appt"
@@ -292,9 +304,10 @@ export class Profile extends Component {
                 {/* <Form.Control type="text" value={this.state.receivedForUpdate.time} onChange={this.statusUpdate} /> */}
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3 d-flex flex-column" controlId="formBasicEmail">
                 <Form.Label>Date</Form.Label>
                 <input
+                  style={{ width: '100%' }}
                   type="date"
                   id="start"
                   name="trip-start"
@@ -311,7 +324,7 @@ export class Profile extends Component {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Public / Private</Form.Label>
+                <Form.Label >Public / Private</Form.Label>
                 {["radio"].map((type) => (
                   <div
                     key={`inline-${type}`}
@@ -321,6 +334,7 @@ export class Profile extends Component {
                         isPublic: e.target.value
                       })
                     }
+                    style={{ display: 'flex', justifyContent: 'center' }}
                   >
                     <Form.Check className="check"
                       inline
@@ -343,14 +357,17 @@ export class Profile extends Component {
               </Form.Group>
             </Form>
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer >
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%', gap: '1rem' }}>
+              <div><Button variant="danger" onClick={() => this.setState({ shUpdate: false })}>
+                Close
+              </Button></div>
+              <div> <Button variant="primary" onClick={this.sendUpdate}>
+                Save Changes
+              </Button></div>
 
-            <Button variant="secondary" onClick={() => this.setState({ shUpdate: false })}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={this.sendUpdate}>
-              Save Changes
-            </Button>
+
+            </div>
           </Modal.Footer>
         </Modal>
       </div>
