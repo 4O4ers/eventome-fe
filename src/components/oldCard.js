@@ -42,7 +42,7 @@ export class AboutCard extends Component {
     } );
   }
 
-  updateEvent = ( e ) => { //////////////////////////////////////////////////////////////////////////////////////////////
+  updateEvent = ( e ) => { 
    
     this.props.showUpdateModal( this.state.data );
   }
