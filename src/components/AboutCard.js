@@ -31,7 +31,7 @@ export class AboutCard extends Component {
     this.setState( { data: this.props.ownData, id: this.props.id, inProfile: this.props.inProfile } );
     let config = {
       method: 'get',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: '/user',
     };
     axios( config )
@@ -49,7 +49,7 @@ export class AboutCard extends Component {
   deleteEvent = ( e ) => {
     let config = {
       method: 'delete',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: `/event/${this.state.id}`,
     };
     axios( config ).then( ( result ) => {
@@ -75,7 +75,7 @@ export class AboutCard extends Component {
     favorites.push( email );
     let config = {
       method: 'put',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: `/event/favorites/${e.target.dataset.idd}`,
       data: { favorites: favorites }
     };
@@ -90,7 +90,7 @@ export class AboutCard extends Component {
         favorites.push( email );
         let config = {
           method: 'put',
-          baseURL: 'http://localhost:3001',
+          baseURL: 'https://eventome.herokuapp.com',
           url: `/user/favorites/${this.props.auth0.user.email}`,
           data: { favorites: [e.target.dataset.idd] }
         };
@@ -114,7 +114,7 @@ export class AboutCard extends Component {
     let ratings = { email: this.props.auth0.user.email, rating: val };
     let config = {
       method: 'put',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: `/event/ratings/${this.props.id}`,
       data: { ratings: ratings }
     };

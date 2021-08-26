@@ -40,7 +40,7 @@ export class Profile extends Component {
     this.setState( { inProfile: true } );
     let config = {
       method: 'get',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: '/user',
     };
     axios( config ).then( res => {
@@ -51,7 +51,7 @@ export class Profile extends Component {
         let { name, email, picture } = this.props.auth0.user;
         let config = {
           method: 'post',
-          baseURL: 'http://localhost:3001',
+          baseURL: 'https://eventome.herokuapp.com',
           url: '/user',
           data: { name, email, picture },
         };
@@ -65,7 +65,7 @@ export class Profile extends Component {
     //console.log(this.state.currentUser);
     config = {
       method: 'get',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: '/event',
     };
     axios( config ).then( res => {
@@ -81,7 +81,7 @@ export class Profile extends Component {
   getFavoret = () => {
     let config = {
       method: 'get',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: '/event',
       data: this.state.data,
     };
@@ -133,7 +133,7 @@ export class Profile extends Component {
 
     let config = {
       method: 'put',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: `/event/${this.state.receivedForUpdate._id}`,
       data: { ...this.state.eventAfterUpdate }
     };
