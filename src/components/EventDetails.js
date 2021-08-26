@@ -7,15 +7,25 @@ import Vector2 from '../components/Images/Vector 4.png';
 import vector5 from '../components/Images/Vector 5.png';
 import axios from 'axios';
 import swal from 'sweetalert';
-
 class EventDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data: this.props.cardInfo,
+            max_temp: '',
+            weather: {},
+            wind_spd: ''
         }
     }
-
+    componentDidMount() {
+        console.log(this.props.cardInfo)
+        axios.get(`http://api.weatherbit.io/v2.0/forecast/daily/?lat=${this.props.cardInfo.address.lat}&lon=${this.props.cardInfo.address.lng}&key=44ec6d8999e14b9d857c29ecf03894bc`).then(res => {
+            let currentDay = res.data.data.filter(itm => itm.datetime === this.props.cardInfo.time[1])[0];
+            let { max_temp, weather, wind_spd } = currentDay;
+            this.setState({ max_temp, weather, wind_spd });
+            console.log(currentDay);
+        }).catch(err => console.log(err));
+    }
     handleAttendance = () => {
         let config = {
             method: "put",
@@ -46,65 +56,48 @@ class EventDetails extends Component {
                     title: "You are in!",
                     text: "This event has been added to your list of events to be attended.",
                     icon: "success",
-                  });
+                });
             })
         })
     }
     render() {
         return (
-            <div>
+            <div className='aboutDiv'>
 
-                <img className="vector1" src={Vector} alt="" />
+                <div className='abt-1' style={{ background: `url(${this.props.cardInfo.picture})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
 
+                </div>
 
+                <div className='abt-2'>
+                    <h2 style={{ textTransform: 'toUpperCase' }}>{this.props.cardInfo.title}</h2>
+                    <p>{this.props.cardInfo.description}</p>
 
+                </div>
 
-                <div class="container bootdey" style={{ marginTop: "3rem", display: "flex", justifyContent: "center" }}>
-                    <div class="col-md-10">
-                        <section class="panel">
-                            <div class="panel-body" style={{ display: "flex", gap: "3rem", flexWrap: 'wrap' }}>
-                                <div class="col-md-6">
-                                    <div class="pro-img-details" style={{borderRadius: '15px', overflow: 'hidden'}}>
-                                        <img
-                                            src={this.props.cardInfo.picture}
-                                            alt=""
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <h4 class="pro-d-title">
-                                        <span class="">{this.props.cardInfo.title}</span>
-                                    </h4>
-                                    <p>
-                                        <strong></strong>
-                                        {this.props.cardInfo.description}
-                                        Praesent ac condimentum felis. Nulla at nisl orci, at
-                                        dignissim dolor, The best product descriptions address your
-                                        ideal buyer directly and personally. The best product
-                                        descriptions address your ideal buyer directly and
-                                        personally.
-                                    </p>
-                                    {/* <div class="product_meta">
-                                        <span class="posted_in">
-                                            {" "}
-                                            <strong>Categories:</strong> {this.props.cardInfo.title}
-                                        </span>
-                                    </div> */}
+                <div className='abt-3'>
+                    <div className='timedate'>
+                        <span><img src="https://img.icons8.com/material-outlined/24/000000/clock--v1.png" alt='' />16:00</span>
 
-                                    <p>
-                                        <Button
-                                            className="attend"
-                                            variant="primary"
-                                            onClick={() => this.handleAttendance()}
-                                        >
-                                            attend
-                                        </Button>
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
+                        <span><img src="https://img.icons8.com/material-outlined/24/000000/calendar--v1.png" alt='' />08-31-2021</span>
+
+                    </div>
+                    <div className='weather'>
+                        <span><img src="https://img.icons8.com/material-outlined/32/ff0000/temperature--v1.png" alt='' />{this.state.max_temp}&#8451;</span>
+
+                        <span><img src="https://img.icons8.com/windows/32/d0deec/clouds.png" alt='' />{this.state.weather.description}</span>
+
+                        <span><img src="https://img.icons8.com/ios-glyphs/32/b9c4d6/wind--v1.png" alt='' />{Number(this.state.wind_spd).toFixed(2)}km/h</span>
                     </div>
                 </div>
+
+                <div className='abt-4' style={{ backgroundImage: `url( https://maps.locationiq.com/v3/staticmap?key=pk.4a782b6f22a6f448625817dfd828280a&center=${this.props.cardInfo.address.lat},${this.props.cardInfo.address.lng}&zoom=16)` }}>
+                    .
+                </div>
+
+                <div className='atnd'>
+                    <button onClick={() => this.handleAttendance()}>Going</button>
+                </div>
+                
             </div>
 
 
