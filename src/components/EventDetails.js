@@ -25,7 +25,7 @@ class EventDetails extends Component {
     handleAttendance = () => {
       let config = {
         method: 'put',
-        baseURL: 'http://localhost:3001',
+        baseURL: 'https://eventome.herokuapp.com',
         url: `/event/attending/${this.props.cardInfo._id}`,
         data: { attending: this.props.auth0.user.email }
       };
@@ -38,7 +38,7 @@ class EventDetails extends Component {
       } ).then( res => {
         let config = {
           method: 'put',
-          baseURL: 'http://localhost:3001',
+          baseURL: 'https://eventome.herokuapp.com',
           url: `/user/attending/${this.props.auth0.user.email}`,
           data: { attending: this.state.data._id }
         };

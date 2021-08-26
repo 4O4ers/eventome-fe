@@ -29,7 +29,7 @@ export class EditEvent extends Component {
 
     let config = {
       method: 'put',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: `/event/${this.state.id}`,
       data: this.state.event,
     };

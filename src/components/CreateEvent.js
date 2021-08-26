@@ -44,7 +44,7 @@ export class CreateEvent extends Component {
       //console.log(this.state.event.picture);
       let config = {
         method: 'post',
-        baseURL: 'http://localhost:3001',
+        baseURL: 'https://eventome.herokuapp.com',
         url: '/event',
         data: { ...this.state.event, creator: this.props.auth0.user.email },
       };

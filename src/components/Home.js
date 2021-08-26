@@ -25,7 +25,7 @@ class Home extends Component {
   componentDidMount = () => { //get all the events in the db
     let config = {
       method: 'get',
-      baseURL: 'http://localhost:3001',
+      baseURL: 'https://eventome.herokuapp.com',
       url: '/event',
     };
     axios( config )
@@ -58,7 +58,7 @@ shrinkSearch = () => {
 };
 
 handleSearch = ( e ) => {
-  axios.get( `http://localhost:3001/event/search?q=${this.state.q}` )
+  axios.get( `https://eventome.herokuapp.com/event/search?q=${this.state.q}` )
     .then( ( result ) => {
       this.setState( { events: result.data } );
     } );
