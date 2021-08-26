@@ -43,21 +43,7 @@ export class AboutCard extends Component {
   }
 
   updateEvent = ( e ) => { //////////////////////////////////////////////////////////////////////////////////////////////
-    //console.log(this.state.data);
-
-    //this.props.id
-    // let config = {
-    //   method: "get",
-    //   baseURL: `http://localhost:3001`,
-    //   url: `/event/one/${this.props.id}`,
-    // };
-    // axios(config).then((result) => {
-    //   //console.log(result)
-    //   this.setState({
-    //     events: result.data,
-    //   });
-
-    // })
+   
     this.props.showUpdateModal( this.state.data );
   }
 
