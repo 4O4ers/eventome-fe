@@ -1,18 +1,12 @@
-import React, { Component } from "react";
-import { Card, Button } from "react-bootstrap";
-import { Container, Col, Row, Modal, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { withAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Profiled from "./Profiled.css";
-import Vector from "../components/Images/Vector 3.png";
-import Vector2 from "../components/Images/Vector 4.png";
-import vector5 from "../components/Images/Vector 5.png";
-import AboutCard from "./AboutCard";
+import React, { Component } from 'react';
+import { Card, Button } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
+import { withAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
+import Profiled from './Profiled.css';
+import AboutCard from './AboutCard';
 import Map from './Map';
 import swal from 'sweetalert';
-import Zoom from 'react-reveal/Zoom';
 
 
 export class Profile extends Component {
@@ -42,97 +36,90 @@ export class Profile extends Component {
     };
   }
   componentDidMount() {
-    //console.log('in profile')
-    this.setState({ inProfile: true })
+    console.log( Profiled );
+    this.setState( { inProfile: true } );
     let config = {
-      method: "get",
-      baseURL: `http://localhost:3001`,
-      url: `/user`,
+      method: 'get',
+      baseURL: 'http://localhost:3001',
+      url: '/user',
     };
-    axios(config).then(res => {
-      if ((res.data.filter(itm => itm.email === this.props.auth0.user.email)).length !== 0 && res.data.filter(itm => itm.email === this.props.auth0.user.email)[0] !== this.state.currentUser) {
-        this.setState({ currentUser: res.data.filter(itm => itm.email === this.props.auth0.user.email)[0] });
+    axios( config ).then( res => {
+      if ( ( res.data.filter( itm => itm.email === this.props.auth0.user.email ) ).length !== 0 && res.data.filter( itm => itm.email === this.props.auth0.user.email )[0] !== this.state.currentUser ) {
+        this.setState( { currentUser: res.data.filter( itm => itm.email === this.props.auth0.user.email )[0] } );
 
       } else {
         let { name, email, picture } = this.props.auth0.user;
         let config = {
-          method: "post",
-          baseURL: `http://localhost:3001`,
-          url: `/user`,
+          method: 'post',
+          baseURL: 'http://localhost:3001',
+          url: '/user',
           data: { name, email, picture },
         };
-        axios(config).then(res => {
-          this.setState({ currentUser: res.data.filter(itm => itm.email === this.props.auth0.user.email)[0] });
+        axios( config ).then( res => {
+          this.setState( { currentUser: res.data.filter( itm => itm.email === this.props.auth0.user.email )[0] } );
 
-        })
+        } );
       }
-      this.props.setCurrentUser(this.state.currentUser);
-    })
+      this.props.setCurrentUser( this.state.currentUser );
+    } );
     //console.log(this.state.currentUser);
     config = {
-      method: "get",
-      baseURL: `http://localhost:3001`,
-      url: `/event`,
+      method: 'get',
+      baseURL: 'http://localhost:3001',
+      url: '/event',
     };
-    axios(config).then(res => {
+    axios( config ).then( res => {
 
-      let favorites = res.data.filter(itm => itm.favorites.includes(this.props.auth0.user.email));
-      let created = res.data.filter(itm => itm.creator === this.props.auth0.user.email);
-      let attending = res.data.filter(itm => itm.attending.includes(this.props.auth0.user.email));
-      this.setState({ favorites, created, attending });
+      let favorites = res.data.filter( itm => itm.favorites.includes( this.props.auth0.user.email ) );
+      let created = res.data.filter( itm => itm.creator === this.props.auth0.user.email );
+      let attending = res.data.filter( itm => itm.attending.includes( this.props.auth0.user.email ) );
+      this.setState( { favorites, created, attending } );
       //console.log(this.state.eventAfterUpdate);
-    })
+    } );
   }
 
   getFavoret = () => {
     let config = {
-      method: "get",
-      baseURL: `http:localhost:3001`,
-      url: `/event`,
+      method: 'get',
+      baseURL: 'http://localhost:3001',
+      url: '/event',
       data: this.state.data,
     };
-    axios(config)
-      .then((result) => {
-        let newArr = result.data
-          .map(({ _id, favorites }) => {
-            return { _id, favorites };
-          })
-          .map(({ _id }) => _id)
-          .join("^");
-
-        this.setState({
+    axios( config )
+      .then( ( result ) => {
+        this.setState( {
           events: result.data,
           showFavoret: true,
-        });
-        this.state.events.map(ele => console.log(ele.title))
+        } );
+        this.state.events.map( ele => console.log( ele.title ) );
 
-      })
-      .catch((err) =>
-        console.log(err)
+      } )
+      .catch( ( err ) =>
+        console.log( err )
       );
 
   };
-  renderAfterDelete = (data) => {
-    this.setState({ data });
-    this.setState({ created: this.state.data.filter(itm => itm.creator === this.props.auth0.user.email) });
+  renderAfterDelete = ( data ) => {
+    this.setState( { data } );
+    this.setState( { created: this.state.data.filter( itm => itm.creator === this.props.auth0.user.email ) } );
   }
-  renderAfterUpdate = (data) => {
-    this.setState({ data });
+  renderAfterUpdate = ( data ) => {
+    this.setState( { data } );
   }
 
-  showUpdateModal = (obj) => {
-    console.log(obj);
-    this.setState({ shUpdate: true, receivedForUpdate: obj });
+  showUpdateModal = ( obj ) => {
+    console.log( obj );
+    this.setState( { shUpdate: true, receivedForUpdate: obj } );
 
   }
-  lngLat = ({ lng, lat }) => {
-    this.setState({ address: { lat: lat, lng: lng } })
+  lngLat = ( { lng, lat } ) => {
+    this.setState( { address: { lat: lat, lng: lng } } );
   }
-  titleUpdate = (e) => {
-    this.setState({ title: e.target.value });
+  titleUpdate = ( e ) => {
+    this.setState( { title: e.target.value } );
   }
-  descUpdate = (e) => {
-    this.setState({ description: e.target.value });
+  descUpdate = ( e ) => {
+    this.setState( { description: e.target.value } );
   }
   sendUpdate = async () => {
     //console.log(this.state.eventAfterUpdate);
@@ -141,33 +128,33 @@ export class Profile extends Component {
     let description = this.state.description;
     let title = this.state.title;
     let isPublic = this.state.isPublic;
-    await this.setState({ eventAfterUpdate: { ...this.state.eventAfterUpdate, time, address, description, title, isPublic } });
+    await this.setState( { eventAfterUpdate: { ...this.state.eventAfterUpdate, time, address, description, title, isPublic } } );
     //await console.log(this.state.eventAfterUpdate);
 
     let config = {
-      method: "put",
-      baseURL: `http://localhost:3001`,
+      method: 'put',
+      baseURL: 'http://localhost:3001',
       url: `/event/${this.state.receivedForUpdate._id}`,
       data: { ...this.state.eventAfterUpdate }
     };
-    axios(config).then((result) => {
-      console.log(result)
-      let created = result.data.filter(itm => itm.creator === this.props.auth0.user.email);
+    axios( config ).then( ( result ) => {
+      console.log( result );
+      let created = result.data.filter( itm => itm.creator === this.props.auth0.user.email );
       //console.log(created);
-      this.setState({
+      this.setState( {
         data: { ...result.data, created }
-      });
+      } );
       //console.log(this.state.created)
 
-    }).then(res => {
-      this.props.updateAfterUpdate(this.state.created);
-      this.setState({ data: this.props.data })
-      swal({
-        title: "Updated",
-        text: "Updates have been saved.",
-        icon: "success",
-      });
-    }).catch(err => console.log(err));
+    } ).then( res => {
+      this.props.updateAfterUpdate( this.state.created );
+      this.setState( { data: this.props.data } );
+      swal( {
+        title: 'Updated',
+        text: 'Updates have been saved.',
+        icon: 'success',
+      } );
+    } ).catch( err => console.log( err ) );
   }
   render() {
     return (
@@ -179,68 +166,68 @@ export class Profile extends Component {
         </div> */}
         {this.props.auth0.isAuthenticated ? (
           <>
-            
-              <div class="member member-box" style={{margin: '1.5rem auto', marginTop: '6.5rem',height: 'fit-content'}}>
-                <img
-                  class="img-member img"
-                  src={this.props.auth0.user.picture}
-                  alt={this.props.auth0.user.name}
-                />
 
-                <h2 class="name-member name" style={{color: 'white'}}>
-                  {this.props.auth0.user.name}
-                  <img src="https://img.icons8.com/color/28/26e07f/verified-account.png" alt=''/>
-                </h2>
-            
-                <blockquote style={{color: 'white'}}>{this.props.auth0.user.email}</blockquote>
-                <p>Web developer</p>
-                <span style={{paddingBottom: '2rem'}} className='socialicons'><img src="https://img.icons8.com/material-outlined/30/000000/github.png" alt=''/>
+            <div class="member member-box" style={{margin: '1.5rem auto', marginTop: '6.5rem',height: 'fit-content'}}>
+              <img
+                class="img-member img"
+                src={this.props.auth0.user.picture}
+                alt={this.props.auth0.user.name}
+              />
+
+              <h2 class="name-member name" style={{color: 'white'}}>
+                {this.props.auth0.user.name}
+                <img src="https://img.icons8.com/color/28/26e07f/verified-account.png" alt=''/>
+              </h2>
+
+              <blockquote style={{color: 'white'}}>{this.props.auth0.user.email}</blockquote>
+              <p>Web developer</p>
+              <span style={{paddingBottom: '2rem'}} className='socialicons'><img src="https://img.icons8.com/material-outlined/30/000000/github.png" alt=''/>
                 <img src="https://img.icons8.com/ios-glyphs/30/00acee/twitter--v1.png" alt=''/>
                 <img src="https://img.icons8.com/material-outlined/30/0e76a8/linkedin--v1.png" alt=''/>
-                </span>
-              </div>
-   
+              </span>
+            </div>
+
 
             <div style={{ textAlign: 'center', fontSize: '2rem' }}>
               My Space
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', margin: '1rem', gap: '1rem' }}>
-              <p style={{ cursor: 'pointer', color: `${this.state.fr ? 'blue' : 'black'}`, borderBottom: `${this.state.fr ? 'solid blue' : 'none'}` }} onClick={() => this.setState({ fr: true, cr: false, at: false })}>Favorites</p>
-              <p style={{ cursor: 'pointer', color: `${this.state.cr ? 'blue' : 'initial'}`, borderBottom: `${this.state.cr ? 'solid blue' : 'none'}` }} onClick={() => this.setState({ fr: false, cr: true, at: false })}>Created</p>
-              <p style={{ cursor: 'pointer', color: `${this.state.at ? 'blue' : 'initial'}`, borderBottom: `${this.state.at ? 'solid blue' : 'none'}` }} onClick={() => this.setState({ fr: false, cr: false, at: true })}>Attending</p>
+              <p style={{ cursor: 'pointer', color: `${this.state.fr ? 'blue' : 'black'}`, borderBottom: `${this.state.fr ? 'solid blue' : 'none'}` }} onClick={() => this.setState( { fr: true, cr: false, at: false } )}>Favorites</p>
+              <p style={{ cursor: 'pointer', color: `${this.state.cr ? 'blue' : 'initial'}`, borderBottom: `${this.state.cr ? 'solid blue' : 'none'}` }} onClick={() => this.setState( { fr: false, cr: true, at: false } )}>Created</p>
+              <p style={{ cursor: 'pointer', color: `${this.state.at ? 'blue' : 'initial'}`, borderBottom: `${this.state.at ? 'solid blue' : 'none'}` }} onClick={() => this.setState( { fr: false, cr: false, at: true } )}>Attending</p>
             </div>
             <div style={{ minHeight: '200px', display: 'flex', flexWrap: 'wrap', marginBottom: '1rem', marginTop: '0' }}>
               {this.state.fr ?
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                  {this.state.favorites.map((itm, i) => {
-                    return (<AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={false} />);
-                  })}
+                  {this.state.favorites.map( ( itm, i ) => {
+                    return ( <AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={false} /> );
+                  } )}
                 </div> : undefined}
 
               {this.state.cr ? <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                {this.state.created.map((itm, i) => {
+                {this.state.created.map( ( itm, i ) => {
                   return (
-                  <AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={true} renderAfterDelete={this.renderAfterDelete} renderAfterUpdate={this.renderAfterUpdate} showUpdateModal={this.showUpdateModal} />
+                    <AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={true} renderAfterDelete={this.renderAfterDelete} renderAfterUpdate={this.renderAfterUpdate} showUpdateModal={this.showUpdateModal} />
                   );
-                })}
+                } )}
               </div> : undefined}
 
               {this.state.at ? <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                {this.state.attending.map((itm, i) => {
-                  return (<AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={false} />);
-                })}
+                {this.state.attending.map( ( itm, i ) => {
+                  return ( <AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={false} /> );
+                } )}
               </div> : undefined}
             </div>
             <div>
-              {this.state.showFavoret && <>{this.state.events.map(ele => {
-                return (<Card>
+              {this.state.showFavoret && <>{this.state.events.map( ele => {
+                return ( <Card>
                   <Card.Body>
                     <Card.Img alt="no image yet" />
                     <Card.Title>{ele.title}</Card.Title>
                     <Card.Text></Card.Text>
                   </Card.Body>
-                </Card>)
-              })}</>
+                </Card> );
+              } )}</>
 
 
 
@@ -249,7 +236,7 @@ export class Profile extends Component {
           </>
         ) : undefined}
 
-        <Modal show={this.state.shUpdate} onHide={() => this.setState({ shUpdate: false })} centered >
+        <Modal show={this.state.shUpdate} onHide={() => this.setState( { shUpdate: false } )} centered >
           <Modal.Header >
             <Modal.Title>Update Event Details</Modal.Title>
           </Modal.Header>
@@ -271,19 +258,19 @@ export class Profile extends Component {
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Address</Form.Label>
                 <Form.Control type="text" defaultValue={
-                  "Lat: " +
+                  'Lat: ' +
                   this.state.receivedForUpdate.address.lng +
-                  "       " +
-                  "Lng: " +
+                  '       ' +
+                  'Lng: ' +
                   this.state.receivedForUpdate.address.lat}
-                  onChange={this.addressUpdate}
-                  value={
-                    "Lat: " +
+                onChange={this.addressUpdate}
+                value={
+                  'Lat: ' +
                     this.state.address.lat +
-                    "       " +
-                    "Lng: " +
+                    '       ' +
+                    'Lng: ' +
                     this.state.address.lng
-                  } />
+                } />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -297,10 +284,10 @@ export class Profile extends Component {
                   max="18:00"
                   defaultValue={this.state.receivedForUpdate.time[0] || '00:00'}
                   required
-                  onChange={(e) =>
-                    this.setState({
+                  onChange={( e ) =>
+                    this.setState( {
                       time: [e.target.value, this.state.time[0]],
-                    })
+                    } )
                   }
                 />
                 {/* <Form.Control type="text" value={this.state.receivedForUpdate.time} onChange={this.statusUpdate} /> */}
@@ -315,10 +302,10 @@ export class Profile extends Component {
                   name="trip-start"
 
                   defaultValue={this.state.receivedForUpdate.time[1] || '2021-09-01'}
-                  onChange={(e) =>
-                    this.setState({
+                  onChange={( e ) =>
+                    this.setState( {
                       time: [this.state.time[0], e.target.value],
-                    })
+                    } )
                   }
 
                 />
@@ -327,14 +314,14 @@ export class Profile extends Component {
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label >Public / Private</Form.Label>
-                {["radio"].map((type) => (
+                {['radio'].map( ( type ) => (
                   <div
                     key={`inline-${type}`}
                     className="mb-3"
-                    onChange={(e) =>
-                      this.setState({
+                    onChange={( e ) =>
+                      this.setState( {
                         isPublic: e.target.value
-                      })
+                      } )
                     }
                     style={{ display: 'flex', justifyContent: 'center' }}
                   >
@@ -355,13 +342,13 @@ export class Profile extends Component {
                       value={false}
                     />
                   </div>
-                ))}
+                ) )}
               </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer >
             <div style={{ display: 'flex', justifyContent: 'center', width: '100%', gap: '1rem' }}>
-              <div><Button variant="danger" onClick={() => this.setState({ shUpdate: false })}>
+              <div><Button variant="danger" onClick={() => this.setState( { shUpdate: false } )}>
                 Close
               </Button></div>
               <div> <Button variant="primary" onClick={this.sendUpdate}>
@@ -377,4 +364,4 @@ export class Profile extends Component {
   }
 }
 
-export default withAuth0(Profile);
+export default withAuth0( Profile );

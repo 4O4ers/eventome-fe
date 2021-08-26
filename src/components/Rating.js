@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 export class Rating extends Component {
- 
+
   render() {
     return (
       <div style={{position: 'absolute', left: '1138px', top: '0px', zIndex: '2'}}>
         <div style={{ width: '250px', height: '60px', background: 'red', position: 'relative', borderRadius: '10px' }} className='bg-dark'>
-          <select id="dropdown-basic-button" title="Dropdown button" style={{ zIndex: '1', position: 'absolute', width: '240px', top: '5px', left: '4.5px', height: '50px', color: 'white', border: 'none', outline: 'none' }} className='bg-dark' onChange={(e) => this.props.getRating(e.target.value)}>
+          <select id="dropdown-basic-button" title="Dropdown button" style={{ zIndex: '1', position: 'absolute', width: '240px', top: '5px', left: '4.5px', height: '50px', color: 'white', border: 'none', outline: 'none' }} className='bg-dark' onChange={( e ) => this.props.getRating( e.target.value )}>
             <option >1</option>
             <option>2</option>
             <option>3</option>
@@ -21,8 +21,8 @@ export class Rating extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Rating
+export default Rating;

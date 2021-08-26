@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class EventCard extends Component {
   render() {
@@ -19,7 +19,7 @@ export class EventCard extends Component {
             </p>
           </div>
           <div className='btm'>
-            
+
             <div className='d1'>
               <span><img src="https://img.icons8.com/material-rounded/24/ffffff/star--v1.png" alt=''/> 9.8</span>
               <span></span>
@@ -35,8 +35,8 @@ export class EventCard extends Component {
 
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default EventCard
+export default EventCard;
