@@ -20,9 +20,9 @@ export class Nav extends Component {
   render() {
     return (
       <div className ="navClass" style={{ top: `${this.state.navTop}px`, zIndex: '1'}}>
-        <Link className='Link' to='/createEvent' onClick={this.props.showNav}>create</Link>
-        <Link  className='Link' to='/profile' onClick={this.props.showNav}>my events</Link>
-        <Link  className='Link' to='/about us' onClick={this.props.showNav}>about us</Link>
+        <Link className='Link' to='/createEvent' onClick={this.props.showNav}>Create</Link>
+        <Link  className='Link' to='/profile' onClick={this.props.showNav}>My Space</Link>
+        <Link  className='Link' to='/about us' onClick={this.props.showNav}>About Us</Link>
       </div>
     )
   }

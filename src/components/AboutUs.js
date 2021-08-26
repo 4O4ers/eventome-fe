@@ -9,8 +9,8 @@ import vector5 from '../components/Images/Vector 5.png';
 export class About extends Component {
     render() {
         return (
-            <div>
-                <img className='vector3' src={Vector} alt =''/>
+            <div style={{marginTop: '3.25rem'}}>
+                {/* <img className='vector3' src={Vector} alt =''/> */}
                 <h1 className="headerAboutUsClass" >MEET OUR TEAM</h1>
                 <p className="HeaderParClass">We are all very different. We were born in different cities, at different times, we love different music,
                     food, movies. But we have something that unites us all.
@@ -108,8 +108,8 @@ export class About extends Component {
                         </div>
                     </div>
                 </div>
-                <img className='vector4' src={Vector2} alt =''/>
-                <img className='vector5' src={vector5} alt =''/>
+                {/* <img className='vector4' src={Vector2} alt =''/>
+                <img className='vector5' src={vector5} alt =''/> */}
 
                 <div className="contactClass" >
                     <h3>Contact Us</h3>

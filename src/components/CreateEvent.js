@@ -8,6 +8,8 @@ import { withAuth0 } from '@auth0/auth0-react';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import swal from 'sweetalert';
 
+// import Kraken from "kraken";
+
 export class CreateEvent extends Component {
     constructor(props) {
         super(props);
@@ -38,8 +40,9 @@ export class CreateEvent extends Component {
         });
     };
     creatEvent = (e) => {
+    
         e.preventDefault();
-
+        //console.log(this.state.event.picture);
         let config = {
             method: "post",
             baseURL: "http://localhost:3001",
@@ -47,7 +50,6 @@ export class CreateEvent extends Component {
             data: { ...this.state.event, creator: this.props.auth0.user.email },
         };
         axios(config).then((result) => {
-            console.log(result.data, '-*******************************');
             let eventData = this.state;
             this.setState({
                 events: eventData,
@@ -66,7 +68,7 @@ export class CreateEvent extends Component {
         return (
 
             <div className='ali'>
-                <h2 style={{color: 'white'}}>Next, we just need a few more details</h2>
+                <h2 style={{color: 'black'}}>Next, we just need a few more details</h2>
                 <div className="formDiv">
                     <h1 style={{ color: "white" }}>.</h1>
 
@@ -145,10 +147,12 @@ export class CreateEvent extends Component {
                             required
                             name="img"
                             accept="image/png, image/jpeg"
-                            onChange={(e) =>
+                            onChange={(e) => {
                                 this.setState({
                                     event: { ...this.state.event, picture: e.target.value },
-                                })
+                                });
+                                
+                            }
                             }
                         />
                         {/* <img src={this.state.picture} alt="" /> */}
@@ -172,7 +176,7 @@ export class CreateEvent extends Component {
                                         time: [e.target.value, this.state.event.time[0]],
                                     },
                                 });
-                                console.log(e.target.value);
+                                
                             }}
                         />
                     </Form.Group>

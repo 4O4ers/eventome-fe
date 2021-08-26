@@ -171,43 +171,45 @@ export class Profile extends Component {
   }
   render() {
     return (
-      <div>
-        <div>
+      <div style={{marginBottom: '4rem'}}>
+        {/* <div>
           <img className="vector1" src={Vector} alt="" />
           <img className="vector2" src={Vector2} alt="" />
           <img className="vector7" src={vector5} alt="" />
-        </div>
+        </div> */}
         {this.props.auth0.isAuthenticated ? (
           <>
-            <div class="container">
-              <div class="member member-box">
+            
+              <div class="member member-box" style={{margin: '1.5rem auto', marginTop: '6.5rem',height: 'fit-content'}}>
                 <img
                   class="img-member img"
                   src={this.props.auth0.user.picture}
                   alt={this.props.auth0.user.name}
                 />
 
-                <h2 class="name-member name">
+                <h2 class="name-member name" style={{color: 'white'}}>
                   {this.props.auth0.user.name}
-                  <i class="fa fa-check" aria-hidden="true"></i>
+                  <img src="https://img.icons8.com/color/28/26e07f/verified-account.png" alt=''/>
                 </h2>
-                <h4 class="expertise-member expertise">
-                  {this.props.auth0.user.nickname}
-                </h4>
-
-                <blockquote>{this.props.auth0.user.email}</blockquote>
+            
+                <blockquote style={{color: 'white'}}>{this.props.auth0.user.email}</blockquote>
+                <p>Web developer</p>
+                <span style={{paddingBottom: '2rem'}} className='socialicons'><img src="https://img.icons8.com/material-outlined/30/000000/github.png" alt=''/>
+                <img src="https://img.icons8.com/ios-glyphs/30/00acee/twitter--v1.png" alt=''/>
+                <img src="https://img.icons8.com/material-outlined/30/0e76a8/linkedin--v1.png" alt=''/>
+                </span>
               </div>
-            </div>
+   
 
             <div style={{ textAlign: 'center', fontSize: '2rem' }}>
-              MY Events
+              My Space
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', margin: '1rem', gap: '1rem' }}>
-              <p style={{ cursor: 'pointer', color: `${this.state.fr ? 'blue' : 'initial'}` }} onClick={() => this.setState({ fr: true, cr: false, at: false })}>Favorites</p>
-              <p style={{ cursor: 'pointer', color: `${this.state.cr ? 'blue' : 'initial'}` }} onClick={() => this.setState({ fr: false, cr: true, at: false })}>Created</p>
-              <p style={{ cursor: 'pointer', color: `${this.state.at ? 'blue' : 'initial'}` }} onClick={() => this.setState({ fr: false, cr: false, at: true })}>Attending</p>
+              <p style={{ cursor: 'pointer', color: `${this.state.fr ? 'blue' : 'black'}`, borderBottom: `${this.state.fr ? 'solid blue' : 'none'}` }} onClick={() => this.setState({ fr: true, cr: false, at: false })}>Favorites</p>
+              <p style={{ cursor: 'pointer', color: `${this.state.cr ? 'blue' : 'initial'}`, borderBottom: `${this.state.cr ? 'solid blue' : 'none'}` }} onClick={() => this.setState({ fr: false, cr: true, at: false })}>Created</p>
+              <p style={{ cursor: 'pointer', color: `${this.state.at ? 'blue' : 'initial'}`, borderBottom: `${this.state.at ? 'solid blue' : 'none'}` }} onClick={() => this.setState({ fr: false, cr: false, at: true })}>Attending</p>
             </div>
-            <Container style={{ minHeight: '200px', display: 'flex', flexWrap: 'wrap', marginBottom: '1rem', marginTop: '0' }}>
+            <div style={{ minHeight: '200px', display: 'flex', flexWrap: 'wrap', marginBottom: '1rem', marginTop: '0' }}>
               {this.state.fr ?
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                   {this.state.favorites.map((itm, i) => {
@@ -228,7 +230,7 @@ export class Profile extends Component {
                   return (<AboutCard key={i} ownData={itm} id={itm._id} getCardInfo={this.props.getCardInfo} inProfile={true} cr={false} />);
                 })}
               </div> : undefined}
-            </Container>
+            </div>
             <div>
               {this.state.showFavoret && <>{this.state.events.map(ele => {
                 return (<Card>

@@ -25,6 +25,9 @@
   gap: 2rem;
   z-index: 0;
 }
+.navClass *:hover {
+  color: rgb(255, 94, 20);
+}
 
 .loginClass{
  color:white;
@@ -904,7 +907,7 @@ box-shadow: 10px 20px 25px black,-10px 10px 25px rgb(255, 94, 20) ;
 .crcl2 {
   left: 1rem
 }
-.c1 button {
+.c1 button , .atnd button{
   box-sizing: border-box;
   background-color: transparent;
   border: 2px solid rgb(255, 94, 20);
@@ -923,20 +926,122 @@ box-shadow: 10px 20px 25px black,-10px 10px 25px rgb(255, 94, 20) ;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
 }
-.c1 button:hover, .c1 button:focus {
+.c1 button:hover, .c1 button:focus , .atnd button:hover, .atnd button:focus{
   color: #fff;
   outline: 0;
 }
 
-.c1 button {
+.c1 button, .atnd button {
   border-color: rgb(255, 94, 20);
   color: #fff;
   box-shadow: 0 0 40px 40px rgb(255, 94, 20) inset, 0 0 0 0 rgb(255, 94, 20);
   transition: all 150ms ease-in-out;
 }
-.c1 button:hover {
+.c1 button:hover, .atnd button:hover {
   box-shadow: 0 0 10px 0 rgb(255, 94, 20) inset, 0 0 10px 4px rgb(255, 94, 20);
 }
 .d1 span {
   cursor: pointer;
+}
+.aboutDiv {
+  max-width: 60%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: 1fr 1fr 0.25fr ;
+  grid-template-areas: "img details"
+                        "time map"
+                        "button button";
+  margin-top: 3rem;
+  gap: 1.5rem;
+}
+
+.abt-1 {
+background-color: yellowgreen;
+grid-area: img;
+background-position: center;
+background-size: cover;
+border-radius: 15px ;
+overflow: hidden;
+min-height: 325px;
+}
+
+.abt-2 {
+
+  grid-area: details;
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr;
+  min-height: 325px;
+  padding-right: 1rem;
+  margin-top: 1rem;
+}
+.abt-3 {
+
+  grid-area: time;
+  min-height: 325px;
+  background: url(https://snipstock.com/assets/cdn/png/bb41eaa208bace44803747f338fdf231.png);
+  background-position-y: 50%;
+  border-radius: 15px;
+}
+.abt-4 {
+  background-color: tomato;
+  grid-area: map;
+  min-height: 325px;
+  border-radius: 15px;
+}
+.timedate {
+  margin-top: 1rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.weather {
+ 
+  display: flex;
+  justify-content: space-evenly;
+  gap:1rem;
+}
+.weather span {
+  display: flex;
+  gap: 0.5rem;
+  text-align: end;
+}
+.atnd {
+  grid-area: button;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.atnd button {
+  margin-left: -5.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+  width: 10rem;
+  height: 4rem;
+}
+.atnd button:hover {
+  color: #ff5e14;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+}
+.usr {
+  border: solid red;
+  width: 60%;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+.ppic {
+  background-image: url(https://st.depositphotos.com/2101611/3925/v/600/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.socialicons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

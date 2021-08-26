@@ -77,7 +77,6 @@ class Home extends Component {
   render() {
     return (
       <div className='h' style={{ paddingBottom: '3rem' }}>
-
         {/* the search element */}
         {this.props.auth0.isAuthenticated ? <Form
           className="u-main-search"
@@ -110,7 +109,7 @@ class Home extends Component {
         {/* before logging in */}
         {this.props.auth0.isAuthenticated ? undefined :
           <>
-            <div className='place' style={{ minHeight: '125vh' }}>
+            <div className='place' style={{ minHeight: '110vh' }}>
               <h1><span>Event</span><span>ome</span></h1>
               <p>Enjoy the easiness of searching for and keeping <br /> track of the events you are interested in<br /> with no complications.</p>
             </div>
