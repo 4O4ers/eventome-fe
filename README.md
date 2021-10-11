@@ -1,5 +1,7 @@
 # eventome-fe
 
+[Live Preview](https://serene-stonebraker-8306f2.netlify.app/)
+
 ## Team agreement - ASAC 301 final project
 
 **Team: 4O4ers** - **Team Members: Adham Mhaydat, Ali Alhjouj, Balqees Alfasatlah, and Hamza Ahmad.**
